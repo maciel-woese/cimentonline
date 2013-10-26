@@ -1,0 +1,183 @@
+/**
+*	@Autor: Emerson THompson
+*	@Empresa: Gesti-net
+**/
+/*SHORTCUT*/
+	.tb_anunciante-shortcut {
+		background-image: url(../images/icon/48x/icon-anunciante.png);
+	}
+	.tb_anunciante-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-anunciante-h.png);
+	}
+
+	.tb_paginas-shortcut {
+		background-image: url(../images/icon/48x/icon-anunciante.png);
+	}
+	.tb_paginas-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-anunciante-h.png);
+	}
+
+	.tb_clientes-shortcut {
+		background-image: url(../images/icon/48x/icon-cliente.png);
+	}
+	.tb_clientes-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-cliente-h.png);
+	}
+
+
+	.tb_fornecedor-shortcut {
+		background-image: url(../images/icon/48x/icon-fornecedor.png);
+	}
+	.tb_fornecedor-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-fornecedor-h.png);
+	}
+
+
+	.tb_tipo_anuncio-shortcut {
+		background-image: url(../images/icon/48x/icon-tipo-anuncio.png);
+	}
+	.tb_tipo_anuncio-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-tipo-anuncio-h.png);
+	}
+
+
+	.perfil-shortcut {
+		background-image: url(../images/icon/48x/icon-perfil.png);
+	}
+	.perfil-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-perfil-h.png);
+	}
+
+
+	.usuarios-shortcut {
+		background-image: url(../images/icon/48x/icon-usuario.png);
+	}
+	.usuarios-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-usuario-h.png);
+	}
+
+
+	
+/*SHORTCUT IE6*/
+	.x-ie6 .tb_anunciante-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-anunciante.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_anunciante-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-anunciante-h.png', sizingMethod='scale');
+	}
+
+	.x-ie6 .tb_paginas-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-anunciante.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_paginas-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-anunciante-h.png', sizingMethod='scale');
+	}
+
+	.x-ie6 .tb_clientes-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-cliente.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_clientes-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-cliente-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .tb_fornecedor-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-fornecedor.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_fornecedor-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-fornecedor-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .tb_tipo_anuncio-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-tipo-anuncio.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_tipo_anuncio-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-tipo-anuncio-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .perfil-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-perfil.png', sizingMethod='scale');
+	}
+	.x-ie6 .perfil-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-perfil-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .usuarios-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-usuario.png', sizingMethod='scale');
+	}
+	.x-ie6 .usuarios-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-usuario-h.png', sizingMethod='scale');
+	}
+
+
+	
+/*ICON-GRID*/
+	.tb_anunciante {
+		background-image: url( ../images/icon/16x/icon-anunciante.png ) !important;
+	}
+	.tb_anunciante:hover {
+		background-image: url( ../images/icon/16x/icon-anunciante-h.png ) !important;
+	}
+
+	.tb_paginas {
+		background-image: url( ../images/icon/16x/icon-anunciante.png ) !important;
+	}
+	.tb_paginas:hover {
+		background-image: url( ../images/icon/16x/icon-anunciante-h.png ) !important;
+	}
+
+	.tb_clientes {
+		background-image: url( ../images/icon/16x/icon-cliente.png ) !important;
+	}
+	.tb_clientes:hover {
+		background-image: url( ../images/icon/16x/icon-cliente-h.png ) !important;
+	}
+
+
+	.tb_fornecedor {
+		background-image: url( ../images/icon/16x/icon-fornecedor.png ) !important;
+	}
+	.tb_fornecedor:hover {
+		background-image: url( ../images/icon/16x/icon-fornecedor-h.png ) !important;
+	}
+
+
+	.tb_tipo_anuncio {
+		background-image: url( ../images/icon/16x/icon-tipo-anuncio.png ) !important;
+	}
+	.tb_tipo_anuncio:hover {
+		background-image: url( ../images/icon/16x/icon-tipo-anuncio-h.png ) !important;
+	}
+
+
+	.perfil {
+		background-image: url( ../images/icon/16x/icon-perfil.png ) !important;
+	}
+	.perfil:hover {
+		background-image: url( ../images/icon/16x/icon-perfil-h.png ) !important;
+	}
+
+
+	.usuarios {
+		background-image: url( ../images/icon/16x/icon-usuario.png ) !important;
+	}
+	.usuarios:hover {
+		background-image: url( ../images/icon/16x/icon-usuario-h.png ) !important;
+	}

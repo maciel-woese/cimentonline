@@ -1,0 +1,67 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family:Tahoma, Geneva, sans-serif
+    font-size:0.75em;
+}
+#conteudo {
+    min-height:455px;
+    padding:12px;
+    margin:0 auto;
+    text-decoration: none;
+    width: 700px;
+}
+ 
+#conteudo .separacao{
+    color:#000066;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    padding:5px 5px 12px 5px;
+    border-bottom:solid #D8543A 3px;
+    text-align:justify;
+    margin-bottom:11px;
+}
+ 
+.fundo_pag{
+    display: none;
+    font-size: 13px;
+    font-weight: bold;
+    height:160px;
+    position: absolute;
+    padding-top:140px;
+    text-align: center;
+    opacity:0.5;filter: alpha(opacity=50) ;
+    text-decoration: none;
+    width: 700px;
+}
+ 
+.fundo_pag{
+    color:#FFFFFF;
+    text-shadow: #fff 0px 0px 20px;
+}
+ 
+.fundo_pag label{
+    border:solid #66FF00 1px;
+}
+ 
+#botao ul{ width: 700px; padding:0px; margin:8px;}
+ 
+#botao ul li {
+    -moz-border-radius: 3px 3px 3px 3px;
+    background: none repeat scroll 0 0 #000000;
+    color: #FFFFFF;
+    float: left;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 2px 0px;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    list-style-type:none;
+    width: 30px;cursor:pointer;
+}
+ 
+#botao ul li:hover{background:#D8543A;}
+li:hover{ color: #CC0000; cursor: pointer; }

@@ -1,0 +1,118 @@
+<?php
+require('../fpdf.php');
+
+class PDF extends FPDF
+{
+// Current column
+var $col = 0;
+// Ordinate of column start
+var $y0;
+
+function Header()
+{
+		//$this->Image('logo01.png',10,8,33,'PNG');
+		//$this->Image('../../scripts/images/logo01find.png',10,8,33);
+		
+		$this->SetFont('Arial','B',12);
+		$this->Cell(190,6,utf8_decode("LISTAGEM DE POSIÇÕES"),0,1,'C');
+		$this->Ln(7);
+		$this->Ln(7);
+		$this->SetFont('Arial','B',6);
+		$this->Cell(10,4,utf8_decode("Veículo: "),0,0,"L");
+		$this->Cell(20,4,$_GET["vDsc"], 0 , 1,'L' );
+		
+		$this->Cell(13,4,"Velocidade: ",0,0,"L");
+		$this->Cell(20,4,$_GET["vVel"], 0 , 1,'L' );
+		
+		$this->Cell(13,4,"Data Inicial: ",0,0,"L");
+		$this->Cell(20,4,$_GET["dInicio"] ." ".$_GET["hInicio"], 0 , 1,'L' );
+		
+		$this->Cell(13,4,"Data Final: ",0,0,"L");
+		$this->Cell(20,4,$_GET["dFim"]." ".$_GET["hFim"], 0 , 1,'L' );
+		
+		
+		$this->Ln(7);
+		$this->SetFont('Arial','B',6);
+		$this->Cell(20,4,"Data/Hora",0,0,"L");
+		$this->Cell(40,4,"Ponto mais Proximo",0,0,"L");
+		$this->Cell(25,4,utf8_decode("Dist. até o ponto"),0,0,"L");
+		$this->Cell(13,4 ,"Latitude",0,0,"L");
+		$this->Cell(13,4 ,"Longitude",0,0,"L");
+		$this->Cell(23,4 ,utf8_decode("Dist. Posições"),0,0,"L");
+		$this->Cell(15,4 ,utf8_decode("Direção"),0,0,"L");
+		$this->Cell(13,4 ,"Vel.(Km)",0,0,"L");
+		$this->Cell(13,4 ,utf8_decode("Tensão"),0,0,"L");
+		$this->Cell(13,4 ,utf8_decode("Ignição"),0,1,"L");
+}
+
+function Footer()
+{
+		$this->SetY(-15);
+		$this->SetFont('Arial','I',8);
+		$this->Cell(10,10,"","T"); $this->Cell(30,10,date("d/m/Y - H:i:s"),"T",0,'L');
+		$this->Cell(0,10,utf8_decode('Página ').$this->PageNo(),"T",0,'R');
+}
+
+function SetCol($col)
+{
+	// Set position at a given column
+	$this->col = $col;
+	$x = 10+$col*65;
+	$this->SetLeftMargin($x);
+	$this->SetX($x);
+}
+
+function AcceptPageBreak()
+{
+	// Method accepting or not automatic page break
+	if($this->col<2)
+	{
+		// Go to next column
+		$this->SetCol($this->col+1);
+		// Set ordinate to top
+		$this->SetY($this->y0);
+		// Keep on page
+		return false;
+	}
+	else
+	{
+		// Go back to first column
+		$this->SetCol(0);
+		// Page break
+		return true;
+	}
+}
+
+function ChapterTitle($num, $label)
+{
+	// Title
+	$this->SetFont('Arial','',12);
+	$this->SetFillColor(200,220,255);
+	$this->Cell(0,6,"Chapter $num : $label",0,1,'L',true);
+	$this->Ln(4);
+	// Save ordinate
+	$this->y0 = $this->GetY();
+}
+
+function ChapterBody($file)
+{
+	// Read text file
+	$txt = file_get_contents($file);
+	// Font
+	$this->SetFont('Times','',12);
+	// Output text in a 6 cm width column
+	$this->MultiCell(60,5,$txt);
+	$this->Ln();
+	// Mention
+	$this->SetFont('','I');
+	$this->Cell(0,5,'(end of excerpt)');
+	// Go back to first column
+	$this->SetCol(0);
+}
+
+
+}
+
+$pdf = new PDF();
+$pdf->Output();
+?>
