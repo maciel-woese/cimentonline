@@ -137,13 +137,8 @@ function CheckAll() {
     <?php
     $num_por_pagina = 5; 
 
-    $pagina = $_GET['pagina'];
-    //descubra o número da página que será exibida
-    // se o numero da página não for informado, definir como 1
-    if (!$pagina) {
-        $pagina = 1;
-    }
-
+    $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+    
     // definir o número do primeiro registro da página. 
     // Faça a continha na calculadora que você entenderá minha fórmula   
     $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
@@ -204,7 +199,7 @@ function CheckAll() {
     	<ul>
             <li>
     			<div id="bloco_cliente">
-        			<div class="check_cotar"><input type="checkbox" name="UIDL" /></div>
+        			<div class="check_cotar"><input type="checkbox" name="UIDL" value="<?=$objectFor['dados'][$i]['id_for']?>" attr-name="<?=$objectFor['dados'][$i]['nome']?>" /></div>
                     
                     
         
@@ -226,6 +221,13 @@ function CheckAll() {
 
     <?php  
         } 
+        
+        $PHP_SELF = $_SERVER['PHP_SELF'];
+        
+        $sigla = isset($_GET['sigla']) ? $_GET['sigla'] : '';
+        $uf = isset($_GET['uf']) ? $_GET['uf'] : '';
+        $city = isset($_GET['city']) ? $_GET['city'] : '';
+
 
         $prev = $pagina - 1;
         $next = $pagina + 1;
@@ -312,10 +314,23 @@ function CheckAll() {
     <div id="form_cotacao">
          <?php
          if($i > 0){
-            if($_SESSION['tipo'] == 5){
+            if(isset($_SESSION['tipo']) and $_SESSION['tipo'] == 5){
          ?>
-        	    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+        	    <a id="btn_cotacao" href = "javascript:void(0)">
                 <button class="btn_cotar"> Fazer Cotação </button></a>
+
+                <script type="text/javascript">
+                    $('#btn_cotacao').click(function(){
+                        $('#light').css('display', 'block');
+                        $('#fade').css('display', 'block');
+                        $('#light .tags_cotar ul li').remove();
+                        var check = $('[name="UIDL"]:checked');
+                        for(var i=0; i<check.length;i++){
+                            $('#light .tags_cotar ul').append('<li>'+$(check[i]).attr('attr-name')+'</li>');
+                            //check[i].val();
+                        }
+                    });
+                </script>
         <?php
 
             }
@@ -326,8 +341,9 @@ function CheckAll() {
         
         <div class="tags_cotar">
         	<ul>
-            <span>Empresas Selecionadas:</span><br />
-            <li>Normatel - Home Center</li><li>Cimentos Nassau</li>
+                <span>Empresas Selecionadas:</span><br />
+                <li>Normatel - Home Center</li>
+                <li>Cimentos Nassau</li>
             </ul>
         </div>
         

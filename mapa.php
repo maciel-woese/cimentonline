@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 
 if( (isset($_GET['sigla']) and !empty($_GET['sigla'])) || (isset($_GET['uf']) and !empty($_GET['uf']))  ){
 

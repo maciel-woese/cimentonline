@@ -51,10 +51,12 @@
 	            
 	            $status = $transaction->getStatus();  
             	$status = $status->getValue(); 
+            	$transaction_id = $transaction->getCode();
+            	$reference= $transaction->getReference(); 
             	
             	$list->db->query("
             		update carrinho set status = {$status}
-		    		id = {$_SESSION['last_carrinho']}
+		    		where transaction_id = '{$transaction_id}' or referencia = '{$reference}'
             	");
 
 	        } catch (PagSeguroServiceException $e) {
