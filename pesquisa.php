@@ -325,10 +325,17 @@ function CheckAll() {
                         $('#fade').css('display', 'block');
                         $('#light .tags_cotar ul li').remove();
                         var check = $('[name="UIDL"]:checked');
+                        var vals = [];
                         for(var i=0; i<check.length;i++){
                             $('#light .tags_cotar ul').append('<li>'+$(check[i]).attr('attr-name')+'</li>');
-                            //check[i].val();
+                            vals.push($(check[i]).val());
                         }
+
+                        $('#anuncio_ids').val(vals.join(','));
+
+                        $('html, body').animate({
+                            scrollTop: $("#light").offset().top
+                        }, 2000);
                     });
                 </script>
         <?php
@@ -348,7 +355,8 @@ function CheckAll() {
         </div>
         
         <table style=" width:500px; height:250px; margin:20px auto;">
-        	<form method="" action="">        
+        	<form method="post" action="cotacao.php">
+                <input id="anuncio_ids" name="fornecedores" type="hidden" />
             <tr>
             	<td align="right"><label>Solicitante:<small>(Identificação)</small></label></td>
                 <td><input name="solicitante" type="text" size="40" placeholder="Razão Social ou Nome de Fantasia" /></td>
@@ -376,45 +384,30 @@ function CheckAll() {
             
             <tr>
             	<td align="right"><label>Tipo de Cimento:</label></td>
-                <td ><select style="width:100px; height:23px;" name="tipo">
-            			<option value="Qualquer Tipo" selected="selected"> Qualquer Tipo </option>
-            			<option value="CPI"> CPI </option>
-            			<option value="CPII Z, E ou F"> CPII Z, E ou F </option>
-           			<option value="CPIII"> CPIII </option>
-            			<option value="CPIV"> CPIV </option>
-                                <option value="CPV"> CPV </option>
-                                <option value="Cimento Branco"> Cimento Branco </option>
-                                <option value="Outro"> Outro </option>
+                <td >
+                    <select style="width:100px; height:23px;" name="tipo">
+            			<option value="" selected="selected">Qualquer Tipo</option>
+            			<?php
+                            $estados_cidades->db->query("
+                                select * from tb_tipo_cimento order by dscricao
+                            ");
+                            while ( $obj = $estados_cidades->db->fetch_object($query) ){
+                                echo '<option value="'.$obj->codigo.'">'.$obj->dscricao.'</option>';
+                            }
+                        ?>
                      </select>
+
                      <label>&nbsp; Marca:</label>
                      <select style="width:100px; height:23px;" name="marca">
-            			<option value="Indiferente" selected="selected"> Indiferente </option>
-            			<option value="Açai"> Açai </option>
-            			<option value="Apodi"> Apodi </option>
-            			<option value="Barroso"> Barroso </option>
-            			<option value="Campeão"> Campeão </option>
-            			<option value="Cimpor"> Cimpor </option>
-            			<option value="Aratu"> Aratu </option>
-            			<option value="Cauê"> Cauê </option>
-            			<option value="Alvorada"> Alvorada </option>
-            			<option value="Ciminas"> Ciminas </option>
-            			<option value="Ciplan"> Ciplan </option>
-            			<option value="Nassau"> Nassau </option>
-            			<option value="Paraíso"> Paraíso </option>
-            			<option value="Poty"> Poty </option>
-            			<option value="Brasil"> Brasil </option>
-            			<option value="Montes Claros"> Montes Claros </option>
-            			<option value="Ita"> Ita </option>
-            			<option value="Itambé"> Itambé </option>
-            			<option value="Liz"> Liz </option>
-            			<option value="Tupi"> Tupi </option>
-            			<option value="Ribeirão"> Ribeirão </option>
-            			<option value="Mizu"> Mizu </option>
-            			<option value="Tocantins"> Tocantins </option>
-            			<option value="Itaú"> Itaú </option>
-            			<option value="Votoran"> Votoran </option>
-            			<option value="CSN"> CSN </option>
-                        <option value="outro"> Outro(a) </option>
+            			<option value="" selected="selected"> Indiferente </option>
+            			<?php
+                            $estados_cidades->db->query("
+                                select * from tb_marca_cimento order by descricao
+                            ");
+                            while ( $obj = $estados_cidades->db->fetch_object($query) ){
+                                echo '<option value="'.$obj->codigo.'">'.$obj->descricao.'</option>';
+                            }
+                        ?>
                      </select><br />
                      <small style="font:10px 'Trebuchet MS', Arial, Helvetica, sans-serif; color:#555; margin:3px 0;">(Na escolha de "Outro", Indique em observações)</small>
                 </td>
@@ -429,15 +422,22 @@ function CheckAll() {
             	<td align="right"><label>Tipo de Entrega:</label></td>
                 <span style="font:14px 'Trebuchet MS', Arial, Helvetica, sans-serif;">
                 <td >
-                	 <input type="checkbox" /> &nbsp;<font style="font:12px 'Trebuchet MS', Arial, Helvetica, sans-serif; color:#333;">Buscar o Cimento no Fornecedor</font><br />
-                	 <input type="checkbox" /> &nbsp;<font style="font:12px 'Trebuchet MS', Arial, Helvetica, sans-serif; color:#333;">Entrega na Obra/Cliente (Sem descarrego)</font><br />
-                     <input type="checkbox" /> &nbsp;<font style="font:12px 'Trebuchet MS', Arial, Helvetica, sans-serif; color:#333;">Entrega na Obra/Cliente (Com descarrego)</font>
+                	 <select style="width:200px; height:23px;" name="tipo_entrega">
+                        <?php
+                            $estados_cidades->db->query("
+                                select * from tb_tipo_entrega order by descricao
+                            ");
+                            while ( $obj = $estados_cidades->db->fetch_object($query) ){
+                                echo '<option value="'.$obj->codigo.'">'.$obj->descricao.'</option>';
+                            }
+                        ?>
+                    </select>
                 </td>                
             </tr>
             
             <tr>
             	<td align="right"><label>Especifique o Local de Entrega:</label></td>
-                <td><textarea name="endereço" cols="31" rows="2" style="resize:vertical;" placeholder="Rua, Bairro, Cidade, Estado etc..."></textarea></td>
+                <td><textarea name="endereco" cols="31" rows="2" style="resize:vertical;" placeholder="Rua, Bairro, Cidade, Estado etc..."></textarea></td>
             </tr>
             
             <tr>
