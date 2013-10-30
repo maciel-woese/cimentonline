@@ -45,7 +45,7 @@
 	    private static function transactionNotification($notificationCode)
 	    {
 
-	        $credentials = new PagSeguroAccountCredentials("macielcr7@gmail.com", "958538F94ABA4EACA3DFEACA066F0114");
+	        $credentials = new PagSeguroAccountCredentials("sousa.justa@gmail.com", "FD3C7617D29F4FA7A2C126676F99B772");
 	        try {
 	            $transaction = PagSeguroNotificationService::checkTransaction($credentials, $notificationCode);
 	            
