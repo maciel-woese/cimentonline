@@ -1,7 +1,11 @@
 <!-- TOPO -->
 <?php include_once 'header.php'; ?> 
 <!-- FIM TOPO -->
-
+<?
+    if(isset($_SESSION["login"]) and !empty($_SESSION["login"])){
+        header('Location: pagamento-compra.php');
+    }
+?>
 
 <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
 <script type="text/javascript">

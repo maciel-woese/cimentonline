@@ -3,6 +3,7 @@
 ini_set("display_errors", 'on');
 
 
+
 require_once 'includes/configure.inc.php';
 include_once 'includes/class/paginas.inc.php';
 $listapagina = new paginas; 
@@ -45,7 +46,7 @@ $listapagina = new paginas;
 
 if(!empty($_SESSION["login"]))
 {
-  echo '<div >Olá você estar logado como '.$_SESSION['tp_nome'].' ['.$_SESSION['nome'].'] </div>';
+  echo '<div >Olá você estar logado como ['.$_SESSION['nome'].'] </div>';
   echo '<a href="logout.php"><div id="header_login" ><img src="css/img/icons/btn-logout.png" title="" alt="" /></div></a>';
 }
 else
