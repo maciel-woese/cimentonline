@@ -1,6 +1,6 @@
 <!-- TOPO -->
 <?php 
-include_once 'header.php'; 
+require_once 'header.php'; 
 require_once 'includes/class/redimensiona.inc.php';
 
 if (isset($_POST['action']) && $_POST['action']=="Publicar"){
@@ -13,7 +13,7 @@ if (isset($_POST['action']) && $_POST['action']=="Publicar"){
     $endereco = $_POST['endereco-empresa'];
     $discricao = $_POST['discricao-empresa'];
         
-    $query = $list->db->query("
+    $query = $listapagina->db->query("
         insert into tb_anuncios 
         (carrinho_id, nome_empresa, endereco, dsc_apresentacao, logo, su_codigo, dt_cadastro, dt_ativacao) 
         VALUES ({$_SESSION['last_carrinho']}, {$nome}, {$endereco}, {$discricao}, {$imgRedimencionada}, {$_SESSION['codigo']}, NOW(), NOW())
