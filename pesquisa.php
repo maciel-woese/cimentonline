@@ -356,7 +356,7 @@ function CheckAll() {
         
         <table style=" width:500px; height:250px; margin:20px auto;">
         	<form method="post" action="cotacao.php">
-                <input id="anuncio_ids" name="anuncio_ids" type="hidden" />
+                <input id="anuncio_ids" name="fornecedores" type="hidden" />
             <tr>
             	<td align="right"><label>Solicitante:<small>(Identificação)</small></label></td>
                 <td><input name="solicitante" type="text" size="40" placeholder="Razão Social ou Nome de Fantasia" /></td>
