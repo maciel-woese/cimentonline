@@ -389,10 +389,10 @@ function CheckAll() {
             			<option value="" selected="selected">Qualquer Tipo</option>
             			<?php
                             $estados_cidades->db->query("
-                                select * from tb_tipo_cimento order by dscricao
+                                select * from tb_tipo_cimento order by descricao
                             ");
                             while ( $obj = $estados_cidades->db->fetch_object($query) ){
-                                echo '<option value="'.$obj->codigo.'">'.$obj->dscricao.'</option>';
+                                echo '<option value="'.$obj->codigo.'">'.$obj->descricao.'</option>';
                             }
                         ?>
                      </select>

@@ -168,7 +168,7 @@ class estados {
 	function getArrayCidades($param){  
 		$this->setPostValues();
 	   
-		$sql = "SELECT * FROM tb_cidade WHERE cid_codigo ='".$param."'";
+		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$param."'";
 		
 		$query2	= $this->db->query($sql);
 

@@ -39,11 +39,12 @@
 						`prazo_entrega` ,
 						`tp_entrega` ,
 						`local_entrega` ,
-						`obs`
+						`obs`,
+						`data_cadastro`
 					)
 					VALUES (
 						{$_SESSION['codigo']} , '{$value}', '{$solicitante}' , '{$contato}' , '{$telefone}' , '{$email}' , '{$quant}' , 
-						'{$tipo}' , '{$marca}' , '{$prazo}' , '{$tipo_entrega}' , '{$endereco}' , '{$observacoes}'
+						'{$tipo}' , '{$marca}' , '{$prazo}' , '{$tipo_entrega}' , '{$endereco}' , '{$observacoes}', NOW()
 					);
 				");				
 			}

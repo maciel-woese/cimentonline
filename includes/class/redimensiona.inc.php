@@ -20,13 +20,13 @@ class Redimensiona{
 		imagecopyresampled($nova, $img, 0, 0, 0, 0, $largura, $autura, $x, $y);
 		
 		if ($imagem['type']=="image/jpeg"){
-			$local="$pasta/$name".".jpg";
+			$local="$pasta/{$name}_".time().".jpg";
 			imagejpeg($nova, $local);
 		}else if ($imagem['type']=="image/gif"){
-			$local="$pasta/$name".".gif";
+			$local="$pasta/{$name}_".time().".gif";
 			imagejpeg($nova, $local);
 		}else if ($imagem['type']=="image/png"){
-			$local="$pasta/$name".".png";
+			$local="$pasta/{$name}_".time().".png";
 			imagejpeg($nova, $local);
 		}		
 		//Jpeg, Gif e Png

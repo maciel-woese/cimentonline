@@ -78,7 +78,7 @@ else
         
   <span class="ball">&#9679;</span>
         
-        <a href="#"><span>Minhas Cotações</span></a>
+        <a href="meu-painel.php?idmenu=cotacoes"><span>Minhas Cotações</span></a>
         
   <span class="ball">&#9679;</span>
         

@@ -1,5 +1,9 @@
 <!-- TOPO -->
-<?php include_once 'header.php'; ?> 
+<?php 
+    require_once 'header.php'; 
+    require_once 'includes/class/estados.inc.php';
+    $estados_cidades = new estados; 
+?> 
 <!-- FIM TOPO -->
 
 <!-- // MENU DINAMICO DO PAINEL -->
@@ -61,133 +65,88 @@ if($_GET['idmenu'] == 'dados'){
         <div class="ident-cotacao">
             <h3>Minha Lista de Cotações</h3>
             
-            <table border="1">
+            <table border="1" style="width:100%!important">
                 <tr>
                     <th width="250">Solicitante</th>
-                    <th width="150">Tipo de Cimento</th>
-                    <th width="220">Local de Entrega</th>
-                    <th width="130">Data</th>
-                    <th width="130">Preço</th>
+                    <th>Tipo de Cimento</th>
+                    <th>Local de Entrega</th>
+                    <th>Qtd Sacos</th>
+                    <th>Data</th>
+                    <th>Preço</th>
                     <th></th>
                 </tr>
+                <?php 
+                    if(isset($_SESSION['login'])){
+                        $num_por_pagina = 5; 
+                        $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+                        $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
 
-                <tr>
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                        $queryCount = $listapagina->db->query("
+                            SELECT count(*) as total FROM `tb_cotacao` where cod_fornecedor = {$_SESSION['codigo']}
+                        ");
 
-                <tr class="azul">
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                        $row = $listapagina->db->fetch_assoc($queryCount);
+                        
+                        $query = $listapagina->db->query("
+                            SELECT c.*, t.descricao, t.valor, DATE_FORMAT(c.data_cadastro, '%d/%m/%Y') as data_cadastro FROM  `tb_cotacao` as c left join tb_tipo_cimento as t on (c.tp_cimento = t.codigo)
+                            where cod_fornecedor = {$_SESSION['codigo']} order by c.codigo desc
+                        ");
 
-                <tr>
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                        $class = '';
+                        
+                        while ( $obj = $listapagina->db->fetch_object($query) ){
+                            $valor = ((float) $obj->valor * (int) $obj->qtd_sacos);
+                            $valor = number_format($valor,2,",",".");
+                            echo "<tr class='{$class}'>
+                                <td>".$obj->nm_solicitante."</td>
+                                <td>".$obj->descricao."</td>
+                                <td>".$obj->local_entrega."</td>
+                                <td>".$obj->qtd_sacos."</td>
+                                <td>".$obj->data_cadastro."</td>
+                                <td>".$valor."</td>
+                                <td><a href='javascript:void(0)' id='".$obj->codigo."' class='btn-cotacao-edit'>
+                                <img src='css/img/icons/view-icon.png' width='20' height='20'>
+                                </a></td>
+                            </tr>";
 
-                <tr class="azul">
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                            if($class==''){$class='azul';}
+                            else{$class='';}
+                        }
 
-                <tr>
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                        
+                        $total_paginas = $row['total'] / $num_por_pagina;
+                        $prev = $pagina - 1;
+                        $next = $pagina + 1;
 
-                <tr class="azul">
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
-
-                <tr>
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
-
-                <tr class="azul">
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
-
-                <tr>
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
-
-                <tr class="azul">
-                    <td>Nome do Solicitante</td>
-                    <td>Tipo do Cimento</td>
-                    <td>Local para ser entregue</td>
-                    <td>00/00/0000</td>
-                    <td>R$00.000,00</td>
-                    <td><a href="javascript:void(0)" onclick="document.getElementById('light-cotacao').style.display='block';document.getElementById('fade').style.display='block'">
-                    <img src="css/img/icons/view-icon.png" width="20" height="20">
-                    </a></td>
-                </tr>
+                        $total_paginas = ceil($total_paginas);
+                    }
+                ?>
             </table>
-            <div class="rodape-table">
-                <a href="">1</a>
-                <a href="" class="ativo">2</a> <!-- pagina selecionada, é só mudar a class -->
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-            </div>
+            <script type="text/javascript">
+                $('.btn-cotacao-edit').click(function(){
+                    var id = $(this).attr('id');
+                    $('#cotacao_id').val(id);
+                    $('#light-cotacao').css('display', 'block');
+                    $('#fade').css('display', 'block');
+                });
+            </script>
+            <?php 
+                if(isset($total_paginas)){
+                    echo '<div class="rodape-table">';
+                    $painel = "";
+                    for ($x=1; $x <= $total_paginas; $x++){
+                        if($x==$pagina){
+                            $painel .= "<a class='ativo' href='?idmenu={$_GET['idmenu']}&pagina=$x'>$x</a>";
+                        }
+                        else{
+                            $painel .= "<a href='?idmenu={$_GET['idmenu']}&pagina=$x'>$x</a>";                            
+                        }
+                    }
+                    
+                    echo "$painel"; 
+                    echo '</div>';                    
+                }
+            ?>
         </div>
         </div>
     <!-- FIM COTAÇÕES // -->
@@ -212,43 +171,84 @@ if($_GET['idmenu'] == 'dados'){
 
     <!-- // DADOS -->
         <div id="corpo_cotacao" style="display:<?php echo $DE ?>;">
-            
+            <?
+                if($_GET['idmenu']=='dados'){
+                    $query = $listapagina->db->query("
+                        SELECT * FROM `tb_fornecedor` where for_codigo = {$_SESSION['codigo']}
+                    ");
+
+                    $row = $listapagina->db->fetch_assoc($query);                    
+                }
+                else{
+                    $row = array(
+                        'for_dsc'=> '',
+                        'for_endereco'=> '',
+                        'est_codigo'=> '',
+                        'cid_codigo'=> '',
+                        'for_tel'=> '',
+                        'for_cel'=> '',
+                        'for_email'=> '',
+                        'for_site'=> ''
+                    );
+                }
+            ?>
             <div class="ident-cotacao">
                 <h3>Dados da Empresa</h3>
 
-                    <form action="" method="">
+                    <form action="edit_fornecedor.php" method="post">
                     <table style="float:left;">
                         <tr>
                             <td><label>Nome da Empresa:</label></td>
-                            <td><input name="empresa" type="text" size="40"></td>
+                            <td><input name="empresa" type="text" size="40" value="<?=$row['for_dsc']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Endereço:</label></td>
-                            <td><input name="endereco" type="text" size="40"></td>
-                        </tr>
-                        <tr>
-                            <td><label>Cidade:</label></td>
-                            <td><input name="cidade" type="text" size="40"></td>
+                            <td><input name="endereco" type="text" size="40" value="<?=$row['for_endereco']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Estado:</label></td>
-                            <td><input name="estado" type="text" size="40"></td>
+                            <td>
+                                <select id="estado" name="estado" style="width:277px; height:30px; margin-top:5px; padding:5px;">
+                                    <?php 
+                                        $estados_cidades->getEstados($row['est_codigo']); 
+                                    ?>
+                                </select> 
+                                <!--<input name="estado" type="text" size="40" value="<?=$row['est_codigo']?>">-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Cidade:</label></td>
+                            <td>
+                                <select id="cidade" name="cidade" style="width:277px; height:30px; margin-top:5px; padding:5px;">
+                                    <?php 
+                                        $cidades = $estados_cidades->getArrayCidades($row['est_codigo']);
+                                        foreach($cidades as $cidade){
+                                            if($cidade['codigo']==$row['cid_codigo']){
+                                                echo '<option value="'.$cidade['codigo'].'" selected="selected">'.$cidade['cidade'].'</option>';
+                                            }
+                                            else{
+                                                echo '<option value="'.$cidade['codigo'].'">'.$cidade['cidade'].'</option>';
+                                            }
+                                        }
+                                    ?>
+                                </select> 
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Telefone:</label></td>
-                            <td><input name="telefone" type="text" size="40"></td>
+                            <td><input name="telefone" type="text" size="40" value="<?=$row['for_tel']?>"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Celular:</label></td>
+                            <td><input name="celular" type="text" size="40" value="<?=$row['for_cel']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Email:</label></td>
-                            <td><input name="email" type="email" size="40"></td>
+                            <td><input name="email" type="email" size="40" value="<?=$row['for_email']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Site:</label></td>
-                            <td><input name="site" type="text" size="40"></td>
-                        </tr>
-                        <tr>
-                            <td><label style="position:absolute;">Institucional:</label></td>
-                            <td><textarea cols="32" rows="3" name="institucional"></textarea></td>
+                            <td><input name="site" type="text" size="40" value="<?=$row['for_site']?>"></td>
                         </tr>
                     </table>
                     <table style="float:left; margin-left:20px;">
@@ -266,10 +266,12 @@ if($_GET['idmenu'] == 'dados'){
                                 <br />
                                 <label>Pré-Visualização de Imagens:</label>
                                 <br /><br />
-                                <img src="clientes/normatel/thumb-img1.png" width="90" height="90" style="border-radius:10px;" />
-                                <img src="clientes/normatel/thumb-img2.png" width="90" height="90" style="border-radius:10px;" />
-                                <img src="clientes/normatel/thumb-img3.png" width="90" height="90" style="border-radius:10px;" />
-                                <img src="clientes/normatel/thumb-img4.png" width="90" height="90" style="border-radius:10px;" />
+                                <?php 
+                                    if(isset($row['ft01']) and !empty($row['ft01'])){echo '<img src="'.$row['ft01'].'" width="90" height="90" style="border-radius:10px;" />';}
+                                    if(isset($row['ft02']) and !empty($row['ft02'])){echo '<img src="'.$row['ft02'].'" width="90" height="90" style="border-radius:10px;" />';}
+                                    if(isset($row['ft03']) and !empty($row['ft03'])){echo '<img src="'.$row['ft03'].'" width="90" height="90" style="border-radius:10px;" />';}
+                                    if(isset($row['ft04']) and !empty($row['ft04'])){echo '<img src="'.$row['ft04'].'" width="90" height="90" style="border-radius:10px;" />';}
+                                ?>
                             </td>
                         </tr>
                         <tr>
@@ -303,44 +305,18 @@ if($_GET['idmenu'] == 'dados'){
         <div class="r-cotacao">
             <h3>Responder Cotação</h3>
             <div class="form-cotacao">
-            <form method="POST" action="">
+            <form method="POST" action="edit-cotacao-fornecedor.php">
                 <table>
+                    
                     <tr>
                         <td>
-            <label>Solicitante:</label><br />
-            <input name="solicitante" type="text" size="48" disabled="desabled" value="Teste" />
-                        </td>
-                        <td>
-            <label>Marca:</label><br />
-            <input name="marca" type="text" size="15" disabled="desabled" value="Teste" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-            <label>Tipo:</label><label style="margin-left:130px;">Quantidade:</label><br />
-            <input name="tipo" type="text" size="20" disabled="desabled" value="Teste" />
-            <input name="quantidade" type="text" size="20" disabled="desabled" value="Teste" style="margin-left:6px;" />
-                        </td>
-                        <td>
-            <label>Data de Entrega:</label><br />
-            <input name="data-entrega" type="text" size="15" disabled="desabled" value="Teste" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-            <label>Local de Entrega:</label><br />
-            <input name="local" type="text" size="72" disabled="desabled" value="Teste" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-            <label>Tipo de entrega:</label><label style="margin-left:60px;">Prazo de Entrega:</label><br />
-            <input name="tipo-entrega" type="text" size="20" disabled="desabled" value="Teste" />
-            <input name="prazo" type="text" size="20" placeholder="Qual o Prazo?" style="margin-left:6px;" />
+                            <input id="cotacao_id" name="cotacao_id" type="hidden" />
+                            <label >Prazo de Entrega:</label><br />
+                            <input name="prazo" type="text" size="20" placeholder="Qual o Prazo?" style="margin-left:6px;width:90%!important" />
                         </td>
                         <td>
             <label>Preço:</label><br />
-            <input name="preco" type="text" size="15" placeholder="Digite o Preço" />
+            <input name="preco" type="text" size="15" placeholder="Digite o Preço" style="width:96%!important" />
                         </td>
                     </tr>
                     <tr>
