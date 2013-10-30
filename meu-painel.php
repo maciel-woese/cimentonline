@@ -4,6 +4,10 @@
 
 <!-- // MENU DINAMICO DO PAINEL -->
 <?php
+if(!isset($_GET['idmenu']){
+    $_GET['idmenu'] = '';
+}
+
 if($_GET['idmenu'] == 'cotacoes'){
         $MC = '';
     }
