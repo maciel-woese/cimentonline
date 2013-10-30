@@ -4,7 +4,7 @@
 
 <!-- // MENU DINAMICO DO PAINEL -->
 <?php
-if(!isset($_GET['idmenu']){
+if(!isset($_GET['idmenu'])){
     $_GET['idmenu'] = '';
 }
 

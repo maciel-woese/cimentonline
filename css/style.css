@@ -767,20 +767,11 @@ body{background:#dfdede;}
 	color:#FFF; 
 	cursor:default;
 	}
-#filtro_pesquisa .icon_filtrar{
-	float:right; 
-	width:25px; 
-	height:25px; 
-	border:none; 
-	background:url(img/icons/busca-icon.png) no-repeat; 
-	margin:7px 15px 0 0; 
-	cursor:pointer;
-	}
 										
 #select_filtrar{
 	float:left; 
-	width:460px; 
-	margin-left:90px;
+	width:420px; 
+	margin-left:160px;
 	}
 
 #pesquisa_resultado{
@@ -1413,7 +1404,7 @@ body{background:#dfdede;}
 	}
 #carrinho-pagamento-cartao{
 	width:345px; 
-	/*height:410px; */
+	height:410px; 
 	float:left; 
 	border-radius:7px; 
 	border:1px solid #E4E7EA;
@@ -1430,6 +1421,7 @@ body{background:#dfdede;}
 	}
 #carrinho-pagamento-cartao .form-pagamento-cartao{
 	width:320px; 
+	height:340px; 
 	margin:0 auto; 
 	margin-top:13px;
 	}
@@ -1729,6 +1721,311 @@ a.small:hover .txt_cod{
 	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#009900', EndColorStr='#00CC00'); 
 	cursor:pointer;
 	}
+
+
+.r-senha{
+	width:310px; 
+	height:180px;
+	margin:0 auto; 
+	border-radius:7px; 
+	border:1px solid #E4E7EA;
+	}
+.r-senha h3{
+	width:280px; 
+	height:25px; 
+	border-radius:7px 7px 0 0; 
+	background:#4674b8; 
+	color:#FFF; 
+	font:18px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	padding:8px 15px; 
+	font-weight:300;
+	}
+.r-senha .form-r-senha{
+	width:270px; 
+	height:150px; 
+	margin:0 auto; 
+	margin-top:20px;
+	}
+ 				.icon-r-senha-email{
+					margin:15px 0 0 0;
+					display:block;
+					position: absolute;
+					}
+
+.r-senha .form-r-senha label{
+	font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	color:#4674b8; 
+	margin:0 0 3px 55px;
+	}
+.r-senha .form-r-senha input{
+	height:25px; 
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	margin-left:50px; 
+	padding:3px;
+	}
+.r-senha .form-r-senha a{
+	font:12px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	text-decoration:underline; 
+	float:left;
+	margin:20px 0;
+	}
+.r-senha .form-r-senha .btn-ident-login{
+	width:100px; 
+	height:35px; 
+	float:right;
+	border-radius:7px; 
+	border:1px solid #090; 
+	background-image:linear-gradient(to bottom, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#0C0), to(#090));
+	background-image:-moz-linear-gradient(top, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00CC00', EndColorStr='#009900'); 
+	color:#FFF; 
+	margin-top:10px;
+	}
+.r-senha .form-r-senha .btn-ident-login:hover{
+	background-image:linear-gradient(to top, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#090), to(#0C0));
+	background-image:-moz-linear-gradient(bottom, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#009900', EndColorStr='#00CC00'); 
+	cursor:pointer;
+	}
+
+/*CORPO - COTAÇÃO*/
+#corpo-cotacao{
+	width:870px; 
+	height:600px; 
+	margin:20px auto;
+	}
+#corpo_cotacao{
+	width:900px; 
+	height:auto; 
+	margin:0 auto; 
+	}
+#corpo_cotacao table{
+	margin: 10px;
+	}
+#corpo_cotacao th{
+	font-weight: bold;
+	}
+#corpo_cotacao table tr{
+	height: 25px;
+	}
+#corpo_cotacao table tr td{
+	padding: 3px;
+	}
+#corpo_cotacao table .azul{
+	background-color: #c0d2ff;
+	}
+#corpo_cotacao .ident-cotacao{
+	width:890px; 
+	height:auto; 
+	float:left; 
+	border-radius:7px; 
+	border:1px solid #E4E7EA;
+	}
+#corpo_cotacao .ident-cotacao h3{
+	width:860px; 
+	height:25px; 
+	border-radius:7px 7px 0 0; 
+	background:#4674b8; 
+	color:#FFF; 
+	font:18px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	padding:8px 15px; 
+	font-weight:300;
+	}
+
+#corpo_cotacao .ident-cotacao .rodape-table{
+	width:860px; 
+	height:25px; 
+	border-radius:0 0 7px 7px; 
+	background:#4674b8; 
+	color:#FFF; 
+	font:18px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	padding:5px 15px; 
+	text-align: right;
+	}
+#corpo_cotacao .ident-cotacao .rodape-table a{
+	font-size: 14px;
+	padding: 2px 5px;
+	background-color: #FFF;
+	margin-top: -8px;
+	color: #4674b8;
+	}
+#corpo_cotacao .ident-cotacao .rodape-table a:hover{
+	background-color: #4674b8;
+	color: #FFF;
+	}
+#corpo_cotacao .ident-cotacao .rodape-table .ativo{
+	background-color: #4674b8;
+	color: #FFF;
+	cursor: default;
+	}
+
+.r-cotacao{
+	width:500px; 
+	height:auto;
+	margin:0 auto; 
+	border-radius:7px; 
+	border:1px solid #E4E7EA;
+	}
+.r-cotacao h3{
+	width:470px; 
+	height:25px; 
+	border-radius:7px 7px 0 0; 
+	background:#4674b8; 
+	color:#FFF; 
+	font:18px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	padding:8px 15px; 
+	font-weight:300;
+	}
+.r-cotacao .form-cotacao{
+	width:470px; 
+	height:auto; 
+	margin:0 auto; 
+	margin-top:20px;
+	}
+.r-cotacao .form-cotacao label{
+	font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; 
+	color:#4674b8; 
+	margin:0 0 3px 10px;
+	}
+.r-cotacao .form-cotacao input{
+	height:25px; 
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	}
+.r-cotacao .form-cotacao textarea{
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	}
+.r-cotacao .form-cotacao .btn-enviar{
+	width:100px; 
+	height:35px; 
+	float:right;
+	border-radius:7px; 
+	border:1px solid #090; 
+	background-image:linear-gradient(to bottom, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#0C0), to(#090));
+	background-image:-moz-linear-gradient(top, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00CC00', EndColorStr='#009900'); 
+	color:#FFF; 
+	margin-top:10px;
+	}
+.r-cotacao .form-cotacao .btn-enviar:hover{
+	background-image:linear-gradient(to top, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#090), to(#0C0));
+	background-image:-moz-linear-gradient(bottom, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#009900', EndColorStr='#00CC00'); 
+	cursor:pointer;
+	}
+
+
+
+/*CORPO - MEU PAINEL*/
+#corpo-painel{
+	width:1100px; 
+	height:600px; 
+	margin:35px	auto;
+	}
+.menu-painel{
+	width:200px; 
+	height:auto; 
+	position: absolute;
+	display: block;
+	border:1px solid #4674b8;
+	border-top:3px solid #4674b8;
+	border-bottom:3px solid #4674b8;
+	padding-top: 10px;
+	border-radius: 7px;
+	}
+.menu-painel a{
+	text-decoration: none;
+	color: #000000;
+	}
+.menu-painel li{
+	height: 25px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	padding: 5px 0 0 0;
+	}
+.menu-painel li:hover{
+	background-color: #4674b8;
+	cursor: pointer;
+	}
+.menu-painel .iten-cotacao{
+	background: url("img/icons/cotacao-icon.png") no-repeat;
+	display: block;
+	margin: -2px 0 0 10px;
+	float: left;
+	width: 24px;
+	height: 24px;
+	}
+.menu-painel .iten-anuncio{
+	background: url("img/icons/anuncios-icon.png") left no-repeat;
+	display: block;
+	margin: -2px 0 0 10px;
+	float: left;
+	width: 24px;
+	height: 24px;
+	}
+.menu-painel .iten-dados{
+	background: url("img/icons/dados-icon.png") left no-repeat;
+	display: block;
+	margin: -2px 0 0 10px;
+	float: left;
+	width: 24px;
+	height: 24px;
+	}
+.corpo-painel{
+	width:880px; 
+	height:auto; 
+	float: right;
+	display: block;
+	}
+.corpo-painel input{
+	height:25px; 
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	}
+.corpo-painel textarea{
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	resize:none;
+	}
+.corpo-painel .btn-atualizar{
+	height:35px; 
+	float:right; 
+	padding:5px 10px; 
+	font-size:14px;
+	border-radius:7px; 
+	border:1px solid #090;
+	background-image:linear-gradient(to bottom, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#0C0), to(#090));
+	background-image:-moz-linear-gradient(top, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00CC00', EndColorStr='#009900'); 
+	color:#FFF; 
+	margin-top:15px;
+	}
+.corpo-painel .btn-atualizar:hover{
+	background-image:linear-gradient(to top, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#090), to(#0C0));
+	background-image:-moz-linear-gradient(bottom, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#009900', EndColorStr='#00CC00'); 
+	cursor:pointer;
+	}
+
+
+
 
 
 /*RODAPÉ*/
