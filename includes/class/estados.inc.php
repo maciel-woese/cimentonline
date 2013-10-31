@@ -123,7 +123,7 @@ class estados {
 		
 		$query2	= $this->db->query($sql);
 		
-		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;"> ';
+		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" onchange="this.form.submit()" > ';
 		echo '<option value=" " disabled="disabled" selected="selected">Selecione uma Cidade</option>';
 
 			   while ( $obj = $this->db->fetch_object($query2) )

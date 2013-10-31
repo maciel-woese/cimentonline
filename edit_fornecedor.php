@@ -17,18 +17,18 @@
 		$email = !empty($_POST['email']) ? $_POST['email'] : null;
 		$site = !empty($_POST['site']) ? $_POST['site'] : null;
 				
-		$ft01 = !empty($_FILES['ft01']) ? $_FILES['ft01'] : null;
-		$ft02 = !empty($_FILES['ft02']) ? $_FILES['ft02'] : null;
-		$ft03 = !empty($_FILES['ft03']) ? $_FILES['ft03'] : null;
-		$ft04 = !empty($_FILES['ft04']) ? $_FILES['ft04'] : null;
+		$ft01 = !empty($_FILES['ft01']['name']) ? $_FILES['ft01'] : null;
+		$ft02 = !empty($_FILES['ft02']['name']) ? $_FILES['ft02'] : null;
+		$ft03 = !empty($_FILES['ft03']['name']) ? $_FILES['ft03'] : null;
+		$ft04 = !empty($_FILES['ft04']['name']) ? $_FILES['ft04'] : null;
 		
 		$set = '';
 
-		if($ft01){$ft01 = $redim->Redimensionar($ft01, 160, "images"); $set .= "ft01 = '{$ft01}',";}
-		if($ft02){$ft02 = $redim->Redimensionar($ft02, 160, "images"); $set .= "ft02 = '{$ft02}',";}
-		if($ft03){$ft03 = $redim->Redimensionar($ft03, 160, "images"); $set .= "ft03 = '{$ft03}',";}
-		if($ft04){$ft04 = $redim->Redimensionar($ft04, 160, "images"); $set .= "ft04 = '{$ft04}',";}
-
+		if($ft01!=null){$ft01 = $redim->Redimensionar($ft01, 160, "images"); $set .= "ft01 = '{$ft01}',";}
+		if($ft02!=null){$ft02 = $redim->Redimensionar($ft02, 160, "images"); $set .= "ft02 = '{$ft02}',";}
+		if($ft03!=null){$ft03 = $redim->Redimensionar($ft03, 160, "images"); $set .= "ft03 = '{$ft03}',";}
+		if($ft04!=null){$ft04 = $redim->Redimensionar($ft04, 160, "images"); $set .= "ft04 = '{$ft04}',";}
+		
 		$query = $list->db->query("
 			update tb_fornecedor set
 				for_dsc= '{$empresa}',
@@ -37,12 +37,10 @@
                 cid_codigo= '{$cidade}',
                 for_tel= '{$telefone}',
                 for_cel= '{$celular}',
-                for_email= '{$email}',
-                
+                for_email= '{$email}',                
                 {$set}
-
                 for_site= '{$site}'
-            where for_codigo = {$_SESSION['codigo']}
+            where for_codigo = {$_SESSION['usu_codigo_id']}
 		");
 
 		if($query){

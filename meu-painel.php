@@ -1,5 +1,6 @@
 <!-- TOPO -->
 <?php 
+    @session_start();
     require_once 'header.php'; 
     require_once 'includes/class/estados.inc.php';
     $estados_cidades = new estados; 
@@ -77,19 +78,20 @@ if($_GET['idmenu'] == 'dados'){
                 </tr>
                 <?php 
                     if(isset($_SESSION['login'])){
+                        
                         $num_por_pagina = 5; 
                         $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
                         $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
 
                         $queryCount = $listapagina->db->query("
-                            SELECT count(*) as total FROM `tb_cotacao` where cod_fornecedor = {$_SESSION['codigo']}
+                            SELECT count(*) as total FROM `tb_cotacao` where cod_fornecedor = {$_SESSION['usu_codigo_id']}
                         ");
 
                         $row = $listapagina->db->fetch_assoc($queryCount);
                         
                         $query = $listapagina->db->query("
                             SELECT c.*, t.descricao, t.valor, DATE_FORMAT(c.data_cadastro, '%d/%m/%Y') as data_cadastro FROM  `tb_cotacao` as c left join tb_tipo_cimento as t on (c.tp_cimento = t.codigo)
-                            where cod_fornecedor = {$_SESSION['codigo']} order by c.codigo desc
+                            where cod_fornecedor = {$_SESSION['usu_codigo_id']} order by c.codigo desc
                         ");
 
                         $class = '';
@@ -174,10 +176,11 @@ if($_GET['idmenu'] == 'dados'){
             <?
                 if($_GET['idmenu']=='dados'){
                     $query = $listapagina->db->query("
-                        SELECT * FROM `tb_fornecedor` where for_codigo = {$_SESSION['codigo']}
+                        SELECT * FROM `tb_fornecedor` where for_codigo = {$_SESSION['usu_codigo_id']}
                     ");
-
-                    $row = $listapagina->db->fetch_assoc($query);                    
+                    
+                    $row = $listapagina->db->fetch_assoc($query); 
+                    print_r($row);              
                 }
                 else{
                     $row = array(
@@ -195,7 +198,7 @@ if($_GET['idmenu'] == 'dados'){
             <div class="ident-cotacao">
                 <h3>Dados da Empresa</h3>
 
-                    <form action="edit_fornecedor.php" method="post">
+                    <form action="edit_fornecedor.php" method="post" enctype="multipart/form-data">
                     <table style="float:left;">
                         <tr>
                             <td><label>Nome da Empresa:</label></td>
@@ -221,13 +224,15 @@ if($_GET['idmenu'] == 'dados'){
                             <td>
                                 <select id="cidade" name="cidade" style="width:277px; height:30px; margin-top:5px; padding:5px;">
                                     <?php 
-                                        $cidades = $estados_cidades->getArrayCidades($row['est_codigo']);
-                                        foreach($cidades as $cidade){
-                                            if($cidade['codigo']==$row['cid_codigo']){
-                                                echo '<option value="'.$cidade['codigo'].'" selected="selected">'.$cidade['cidade'].'</option>';
-                                            }
-                                            else{
-                                                echo '<option value="'.$cidade['codigo'].'">'.$cidade['cidade'].'</option>';
+                                        if($row['est_codigo'] != ""){
+                                            $cidades = $estados_cidades->getArrayCidades($row['est_codigo']);
+                                            foreach($cidades as $cidade){
+                                                if($cidade['codigo']==$row['cid_codigo']){
+                                                    echo '<option value="'.$cidade['codigo'].'" selected="selected">'.$cidade['cidade'].'</option>';
+                                                }
+                                                else{
+                                                    echo '<option value="'.$cidade['codigo'].'">'.$cidade['cidade'].'</option>';
+                                                }
                                             }
                                         }
                                     ?>
