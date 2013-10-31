@@ -109,7 +109,7 @@ function CheckAll() {
             }else{    
             ?> 
 
-           <select id="city" name="CITY" style="width:200px; height:30px; margin:5px 0 0 30px; padding:5px;"> 
+           <select id="city" name="CITY" style="width:180px; height:30px; margin:5px 0 0 30px; padding:5px;"> 
             <option value=" " selected="selected">Selecione uma Cidade</option>
             </select>
            <?php
@@ -119,9 +119,7 @@ function CheckAll() {
             </span>
                                         
         </div>
-        
-            <input type="submit" class="icon_filtrar" type="submit" value="" />
-
+  
         </form>
         
     </div>
