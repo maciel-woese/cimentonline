@@ -118,11 +118,6 @@ class usuarios {
 					break;
 					
 				case '2':
-
-					$sql = "SELECT f.for_codigo as codigo_id FROM `tb_fornecedor` as f 
-					inner join tb_usuarios as t on f.for_email = t.login
-					where usu_codigo = {$obj->usu_codigo}";
-
 					$tp_nome = 'Fornecedor';
 					break;
 					
@@ -137,13 +132,10 @@ class usuarios {
 				case '5':
 					$tp_nome = 'Cliente';
 					break;					
-			}		
-
-			$query2	= $this->db->query($sql);
-			$row = $this->db->fetch_assoc($query2);
+			}
 			
 			$dados[] = array(
-				'usu_codigo_id'=>   $row['codigo_id'],
+				'usu_codigo_id'=>   $obj->cod_usu,
 				'usu_login'    =>	$obj->login,
 				'usu_nome'     =>	$obj->nome,
 				'usu_codigo'   =>	$obj->usu_codigo,
