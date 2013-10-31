@@ -131,7 +131,7 @@ class anunciante {
 
 						require_once 'includes/class/usuario.inc.php';
 						$usuarios = new usuarios;	
-						$resultUser = $usuarios->insert($this->email, $this->senha, $this->db->insert_id(), 3 );
+						$resultUser = $usuarios->insert($this->email, $this->senha, htmlentities($this->nome), $this->db->insert_id(), 3 );
 						if($resultUser == 1){
 							$erro = 30;
 						}

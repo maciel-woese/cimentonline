@@ -14,6 +14,8 @@ $num_logar = $objectUsu['total'];
 for($i=0; $i < count($objectUsu['dados']); $i++)
 {
 	$id = $objectUsu['dados'][$i]['usu_codigo'];
+   $usu_codigo_id = $objectUsu['dados'][$i]['usu_cod_usu'];
+   
    $nome = $objectUsu['dados'][$i]['usu_nome'];
    $login = $objectUsu['dados'][$i]['usu_login'];
 	$tipo = $objectUsu['dados'][$i]['usu_tp_usu'];
@@ -35,6 +37,8 @@ else
    //Cria a sessão e manda pra pagina principal.php
    session_start();
    $_SESSION['codigo'] = $id;
+   $_SESSION['usu_codigo_id'] = $usu_codigo_id;
+      
    $_SESSION['nome'] = $nome;
    $_SESSION['login'] = md5($login);
    $_SESSION['tipo'] = $tipo;

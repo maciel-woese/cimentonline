@@ -109,7 +109,7 @@ class cliente {
 
 						require_once 'includes/class/usuario.inc.php';
 						$usuarios = new usuarios;	
-						$resultUser = $usuarios->insert($this->email, $this->senha, $this->db->insert_id(), 5 );
+						$resultUser = $usuarios->insert($this->email, $this->senha, $this->nome, $this->db->insert_id(), 5 );
 						if($resultUser == 1){
 							$erro = 30;
 						}

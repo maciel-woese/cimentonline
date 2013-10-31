@@ -46,12 +46,12 @@ $listapagina = new paginas;
 
 if(!empty($_SESSION["login"]))
 {
-  echo '<div >Olá você estar logado como ['.$_SESSION['nome'].'] </div>';
-  echo '<a href="logout.php"><div id="header_login" ><img src="css/img/icons/btn-logout.png" title="" alt="" /></div></a>';
+  echo '<div class="logado"><div class="info"><i>Olá,</i> <b>'.$_SESSION['nome'].'</b></div> &nbsp;<a href="logout.php"><img style="float:right; margin-top:2px;" src="img/logout-icon.png" /></a></div>';
 }
 else
 {
-  echo '<a href="login.php"><div id="header_login"><img src="css/img/icons/acessar-login.png" title="" alt="" /></div></a>';
+  echo '<a class="logado" href="login.php"><div class="info">&nbsp;&nbsp;Acessar minha Conta</div></a>';
+  //echo '<a href="login.php"><div id="header_login"><img src="css/img/icons/acessar-login.png" title="" alt="" /></div></a>';
 }
 
 ?>
@@ -77,8 +77,24 @@ else
         <a href="loja.php"><span>Anuncie</span></a>
         
   <span class="ball">&#9679;</span>
+        <?php
+        if(!empty($_SESSION['tipo']))
+        {
+          if($_SESSION["tipo"] == 2){
+            echo '<a href="meu-painel.php?idmenu=cotacoes"><span>Meu Painel</span></a>';
+          }
+          else
+          {
+            echo '<a href=""><span>Minhas Cotações</span></a>';
+          }
+        }
+        else
+        {
+          echo '<a href=""><span>Minhas Cotações</span></a>';
+        }
+
+        ?> 
         
-        <a href="meu-painel.php?idmenu=cotacoes"><span>Minhas Cotações</span></a>
         
   <span class="ball">&#9679;</span>
         

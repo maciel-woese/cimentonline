@@ -131,7 +131,7 @@ class fornecedor {
 
 						require_once 'includes/class/usuario.inc.php';
 						$usuarios = new usuarios;	
-						$resultUser = $usuarios->insert($this->email_principal, $this->senha, $this->db->insert_id(), 2 );
+						$resultUser = $usuarios->insert($this->email_principal, $this->senha, $this->razao_social, $this->db->insert_id(), 2 );
 						if($resultUser == 1){
 							$erro = 30;
 						}		
