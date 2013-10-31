@@ -82,7 +82,7 @@ function CheckAll() {
         <form method="GET" action="pesquisa.php">
 
         <div id="select_filtrar">
-            <select id="UF" name="uf" style="width:200px; height:30px; margin:5px 10px; padding:5px;">
+            <select id="UF" name="uf" style="width:180px; height:30px; margin:5px 10px; padding:5px;" onchange='this.form.submit()'>
             <option value=" " disabled="disabled" selected="selected">Selecione um Estado</option>
                 <?php
                 //Busca Estados

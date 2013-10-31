@@ -12,7 +12,7 @@
 		
 		if($cotacao_id!=null and $prazo!=null){
 			$query = $list->db->query("
-				update tb_cotacao set prazo = '{$prazo}', obs = '{$obs}' where codigo = {$cotacao_id}
+				update tb_cotacao set prazo_entrega = '{$prazo}', obs = '{$obs}' where codigo = {$cotacao_id}
 			");
 
 			if($query){

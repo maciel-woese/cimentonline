@@ -28,7 +28,7 @@ class usuarios {
 		return $row['count'];
 	}
 
-	function insert($param1, $param2, $param3, $param4 ){
+	function insert($param1, $param2, $param3, $param4, $param5 ){
 
 		$this->setPostValues();
 		$erro =0;
@@ -54,6 +54,7 @@ class usuarios {
 								(
 									`login`, 
 									`senha`, 
+									`nome`,
 									`cod_usu`, 
 									`tp_usu`
 								)
@@ -62,7 +63,8 @@ class usuarios {
 									'".$param1."', 
 									'".md5($param2)."', 
 									'".$param3."', 
-									'".$param4."'
+									'".$param4."', 
+									'".$param5."'
 								);";
 	
 							if ( !$this->db->query($sql) )	{
@@ -116,6 +118,11 @@ class usuarios {
 					break;
 					
 				case '2':
+
+					$sql = "SELECT f.for_codigo as codigo_id FROM `tb_fornecedor` as f 
+					inner join tb_usuarios as t on f.for_email = t.login
+					where usu_codigo = {$obj->usu_codigo}";
+
 					$tp_nome = 'Fornecedor';
 					break;
 					
@@ -132,7 +139,11 @@ class usuarios {
 					break;					
 			}		
 
+			$query2	= $this->db->query($sql);
+			$row = $this->db->fetch_assoc($query2);
+			
 			$dados[] = array(
+				'usu_codigo_id'=>   $row['codigo_id'],
 				'usu_login'    =>	$obj->login,
 				'usu_nome'     =>	$obj->nome,
 				'usu_codigo'   =>	$obj->usu_codigo,

@@ -38,14 +38,32 @@ body{background:#dfdede;}
 	background:#039;
 	}
 
+#header .logado{
+	width:180px;
+	height:35px;
+	background:#4674B8;
+	color:#FFFFFF;
+	display:block;
+	float:right;
+	margin: 3px -465px 0 0;
+	z-index:9999;
+	border-radius:5px;
+	}
+#header .logado .info{
+	width:auto;
+	margin:8px 0 0 5px;
+	position:absolute;
+	}
+
 #header_pesquisa{
 	width:278px; 
 	height:25px; 
 	float:right; 
-	margin:10px 140px 0 0; 
+	margin:10px 190px 0 0; 
 	font:16px "Trebuchet MS", Arial, Helvetica, sans-serif; 
 	font-weight:bold; 
 	color:#808183;
+	text-align:right;
 	}
 #header_pesquisa input{
 	width:165px; 
@@ -1475,7 +1493,7 @@ a.small:hover .txt_cod{
 	display:block; 
 	position:absolute;
 	}
-#carrinho-pagamento-cartao .form-pagamento-cartao .btn-finalizar{
+.btn-finalizar{
 	height:35px; 
 	float:right; 
 	padding:5px 10px; 
@@ -1489,7 +1507,7 @@ a.small:hover .txt_cod{
 	color:#FFF; 
 	margin-top:5px;
 	}
-#carrinho-pagamento-cartao .form-pagamento-cartao .btn-finalizar:hover{
+.btn-finalizar:hover{
 	background-image:linear-gradient(to top, #0C0, #090);
 	background-image:-webkit-gradient(linear, left top, left bottom, from(#090), to(#0C0));
 	background-image:-moz-linear-gradient(bottom, #0C0, #090);
