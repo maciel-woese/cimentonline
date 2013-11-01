@@ -180,7 +180,7 @@ if($_GET['idmenu'] == 'dados'){
                     ");
                     
                     $row = $listapagina->db->fetch_assoc($query); 
-                    print_r($row);              
+                              
                 }
                 else{
                     $row = array(

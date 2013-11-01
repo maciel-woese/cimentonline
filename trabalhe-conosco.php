@@ -1,5 +1,25 @@
 <!-- TOPO -->
-<?php include_once 'header.php'; ?> 
+<?php 
+include_once 'header.php'; 
+
+//print $_FILES["arquivo_pdf"]["size"] ;
+
+move_uploaded_file($_FILES["arquivo_pdf"]["tmp_name"], "curriculum/" . $_FILES["arquivo_pdf"]["name"]); 
+/*$allowedExts = array("pdf", "doc", "docx"); 
+$extension = end(explode(".", $_FILES["arquivo_pdf"]["name"]));
+
+if ( ( ($_FILES["arquivo_pdf"]["type"] == "application/msword") || ($_FILES["arquivo_pdf"]["type"] == "text/pdf") ) 
+&& ($_FILES["arquivo_pdf"]["size"] < 20000) && in_array($extension, $allowedExts))
+{      
+    move_uploaded_file($_FILES["arquivo_pdf"]["tmp_name"], "curriculum/" . $_FILES["arquivo_pdf"]["name"]); 
+}
+else
+{
+    echo "Invalid file."
+}
+
+*/
+?> 
 <!-- FIM TOPO -->
 
 
@@ -26,7 +46,7 @@ Investimos fortemente em programas de treinamento, por meio do nosso centro de f
 <h4 style="color:#4674b8;">Queremos você em nossa equipe!</h4>
 <br />
 
-<form enctype="multipart/form-data" action="" method="">
+<form enctype="multipart/form-data" action="trabalhe-conosco.php?action=ENVIA_CURRICULUM" method="POST">
 <table border="5" width="450" height="180">
 
 	<tr>
@@ -52,7 +72,7 @@ Investimos fortemente em programas de treinamento, por meio do nosso centro de f
     <label>Arquivo*:</label>
     	</td>
         <td>
-    <input name="arquivo" type="file" size="40" />
+    <input name="arquivo_pdf" type="file" size="40" />
     	</td>
     </tr>
     
@@ -60,7 +80,7 @@ Investimos fortemente em programas de treinamento, por meio do nosso centro de f
     	<td colspan="2">
         <span style="font-size:12px; color:#666;">
         Limite de Upload: 16mb <br />
-        Seu Curriculum deve estar no formato ".doc" ou ".pdf" <br />
+        Seu Curriculum deve estar no formato ".pdf" <br />
         * Campos Obrigatórios
         </span>
         </td>

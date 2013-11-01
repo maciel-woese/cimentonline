@@ -197,26 +197,30 @@ function geraCodPonto($dig=8){
 	return $senha;
 }
 
-function enviar_email($msg) {
+
+function enviar_email($nome,$email,$assunto,$mensagem) {
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
-	$mail->Host = "smtp.sdsat.com.br";
+	$mail->Host = "smtp.shsolutions.com.br";
 	$mail->SMTPAuth = true;
-	$mail->Username = "noreply@sdsat.com.br";
+	$mail->Username = "noreply@shsolutions.com.br";
 	$mail->Password = "fsj@1500";
-	$mail->From = "noreply@sdsat.com.br";
-	$mail->FromName = "MONITORAMENTO";
-	//$mail->AddAddress("fcolucascabral@gmail.com","Lucas");
+	$mail->From = "noreply@shsolutions.com.br";
+	$mail->FromName = $assunto;
+	//$mail->AddAddress("miltoncintra@gmail.com","Milton Cintra");
+	//$mail->AddAddress("victor@victorcintra.com.br","Victor Cintra");
+	
+	$mail->AddAddress("thompson.emerson@gmail.com","Thompson Emerson");
 	$mail->AddAddress("sousa.justa@gmail.com","Sousa Justa");
 	$mail->WordWrap = 50;
 	$mail->IsHTML(true);
-	$nome     = ucwords("MONITORAMENTO");
-	$email 	  = "sousa.justa@gmail.com";
-	//$mail->AddReplyTo("$email","$nome");
-	$msg1 .= "<br><br>\n<b> Mensagem Automatica</b><br><br>\n";
-	$mail->Subject = "Erro...";
-	$mail->Body = $msg1 .' '. $msg;
+	//$nome     = ucwords("MONITORAMENTO");
+	//$email 	  = "sousa.justa@gmail.com";
+	$mail->AddReplyTo($email,$nome);
+	$msg1 .= "<br><br>\n<b> Formulario de contato do site CIMENTONLINE</b><br><br>\n";
+	$mail->Subject = $assunto;
+	$mail->Body = $msg1.' '.$mensagem;
 
 	if(!$mail->Send())
 	{

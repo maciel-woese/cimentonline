@@ -68,9 +68,21 @@ else
 
 		<a href="pesquisa.php"><span>Pesquisa</span></a>
         
-  <span class="ball">&#9679;</span>
+  
         
-        <a href="cadastro.php"><span>Cadastre-se</span></a>
+        <?php
+
+        if(!empty($_SESSION["login"]))
+        {
+        }
+        else
+        {
+          echo '<span class="ball">&#9679;</span>';
+          echo '<a href="cadastro.php"><span>Cadastre-se</span></a>';
+        }
+
+        ?>
+        
         
   <span class="ball">&#9679;</span>
         
@@ -81,15 +93,21 @@ else
         if(!empty($_SESSION['tipo']))
         {
           if($_SESSION["tipo"] == 2){
+            $meuPainel = '';
+            $minhasCotacoes = 'none';
             echo '<a href="meu-painel.php?idmenu=cotacoes"><span>Meu Painel</span></a>';
           }
           else
           {
+            $meuPainel = 'none';
+            $minhasCotacoes = '';
             echo '<a href=""><span>Minhas Cotações</span></a>';
           }
         }
         else
         {
+          $meuPainel = 'none';
+          $minhasCotacoes = '';
           echo '<a href=""><span>Minhas Cotações</span></a>';
         }
 
@@ -99,7 +117,19 @@ else
   <span class="ball">&#9679;</span>
         
         <li class="submenu"><a href="#"><span>Institucional</span></a>
-          <ul>
+
+          <ul style="display:<? echo $minhasCotacoes; ?>;">
+              <?php
+                $obj = $listapagina->getArraySubPage(); 
+                for($c=0; $c < count($obj); $c++)
+                {
+                    echo '<a href="subpage.php?action='. $obj[$c]['codigo'] .'"><li>'.$obj[$c]['titulo'].'</li></a>';
+                }
+              ?>              
+            </ul>
+
+
+            <ul style="display:<? echo $meuPainel; ?>; margin-left:396px;">
               <?php
                 $obj = $listapagina->getArraySubPage(); 
                 for($c=0; $c < count($obj); $c++)
