@@ -103,9 +103,9 @@ function CheckAll() {
 
             <?php    
             if(isset($_GET['sigla']) and !empty($_GET['sigla'])){
-                    $estados_cidades->getCidades($_GET['sigla']); 
+                    $estados_cidades->getCidadesPgPesquisa($_GET['sigla']); 
             }else if(isset($_GET['uf']) and !empty($_GET['uf'])){ 
-                    $estados_cidades->getCidades($_GET['uf']); 
+                    $estados_cidades->getCidadesPgPesquisa($_GET['uf']); 
             }else{    
             ?> 
 

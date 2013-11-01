@@ -123,6 +123,35 @@ class estados {
 		
 		$query2	= $this->db->query($sql);
 		
+		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" > ';
+		echo '<option value=" " disabled="disabled" selected="selected">Selecione uma Cidade</option>';
+
+			   while ( $obj = $this->db->fetch_object($query2) )
+				{
+					if($this->city == $obj->cid_codigo){
+						echo '<option value="'.$obj->cid_codigo.'" selected="selected">'.utf8_encode($obj->cid_dsc).'</option>'; 
+					}else{
+				  		echo '<option value="'.$obj->cid_codigo.'">'.$obj->cid_dsc.'</option>';
+				  	}
+				}
+		
+		echo '</select> ';
+	}
+
+	function getCidadesPgPesquisa($sigla=null){  
+		$this->setPostValues();
+	   	if($sigla!=null){
+	   		$sql = "SELECT * FROM tb_cidade c 
+	   		inner join tb_estado e ON e.est_codigo = c.cod_estado
+	   		WHERE e.est_sigla ='".$sigla."' or e.est_codigo = '".$sigla."'";
+	   	}
+	   	else{
+	   		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$this->drop_var."'";
+	   	}
+
+		
+		$query2	= $this->db->query($sql);
+		
 		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" onchange="this.form.submit()" > ';
 		echo '<option value=" " disabled="disabled" selected="selected">Selecione uma Cidade</option>';
 
