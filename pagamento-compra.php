@@ -58,24 +58,61 @@ jQuery(function($){
 <!-- CORPO -->
 <div id="corpo-compra">
 
-<div class="carrinho_etapa-3"></div>
+
+<div class="carrinho_etapa-4">
+
+    <style type="text/css">
+        .etapas{
+            position: absolute;
+            display: block;
+            font-size: 14px;
+        }
+        .etapas .azul{
+            color: #4674B8;
+        }
+        .etapas .cinza{
+            color: #999999;
+        }
+        .etapas .ativo{
+            font-weight: bold;
+            color: #4674B8;
+        }
+        .etapas tr td{
+            width: 115px;
+            padding-left: 35px;
+        }
+    </style>
+
+    <div class="etapas">
+    
+    <table>
+        <tr>
+            <td class="azul">Carrinho</td>
+            <td class="azul">Identificação</td>
+            <td class="azul">Publicação</td>
+            <td class="ativo">Pagamento</td>
+            <td class="cinza">Confirmação</td>
+        </tr>
+    </table>
+
+    </div>
+</div>
+
 
 	<div id="corpo_pagamento">
-		<div id="carrinho-pagamento-cartao">
-         	<h3>PagSeguro</h3>
+        
+        <center>
+        	<img src="img/como-funciona.png" alt="cimentonline"  />
+        </center>
             
-            <div class="form-pagamento-cartao">
+            <div style="display:block; position:absolute; z-index:9999; margin: -380px 0 0 260px;">
             <form name="pagamento-cartao" method="" action="payment.php">
-            	<input class="btn-finalizar" type="submit" value="Finalizar Compra" />
+            	<input class="btn-finalizar" type="submit" value="Finalizar Compra" style="height:70px; width:160px;" />
             </form>
             </div>
-        </div>
+
       
 	</div>
-    <div class="btns-compra">
-    <a href="identificacao-compra.php"><button class="btn-voltar">Voltar</button></a>
-    </div>
-
 
 </div>
 <!-- FIM CORPO -->

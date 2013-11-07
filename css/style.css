@@ -5,6 +5,25 @@ body{background:#dfdede;}
 #box2{width:1180px; margin:0 auto;}
 
 /*TOPO*/
+
+.btn{
+	padding:0 10px !important; 
+	font-size:14px;
+	border-radius:7px; 
+	background-image:linear-gradient(to bottom, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#0C0), to(#090));
+	background-image:-moz-linear-gradient(top, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#00CC00', EndColorStr='#009900'); 
+	color:#FFF;
+	}
+.btn:hover{
+	background-image:linear-gradient(to top, #0C0, #090);
+	background-image:-webkit-gradient(linear, left top, left bottom, from(#090), to(#0C0));
+	background-image:-moz-linear-gradient(bottom, #0C0, #090);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#009900', EndColorStr='#00CC00'); 
+	cursor:pointer;
+	}
+
 #header{
 	width:1180px; 
 	height:275px;
@@ -30,7 +49,7 @@ body{background:#dfdede;}
 	display:block; 
 	position:relative; 
 	z-index:9999; 
-	background:#4674B8; 
+	background:#4674B8;
 	margin:8px -400px 0 0;
 	border-radius:8px;
 	}
@@ -39,13 +58,13 @@ body{background:#dfdede;}
 	}
 
 #header .logado{
-	width:180px;
-	height:35px;
+	height:18px;
+	padding:8px 10px;
 	background:#4674B8;
 	color:#FFFFFF;
 	display:block;
 	float:right;
-	margin: 3px -465px 0 0;
+	margin:0 0 0 10px;
 	z-index:9999;
 	border-radius:5px;
 	}
@@ -55,24 +74,24 @@ body{background:#dfdede;}
 	position:absolute;
 	}
 
-#header_pesquisa{
-	width:278px; 
+.header_pesquisa{
+	width:auto; 
 	height:25px; 
 	float:right; 
-	margin:10px 190px 0 0; 
 	font:16px "Trebuchet MS", Arial, Helvetica, sans-serif; 
 	font-weight:bold; 
 	color:#808183;
 	text-align:right;
+	margin-top:5px;
 	}
-#header_pesquisa input{
+.header_pesquisa input{
 	width:165px; 
 	height:25px; 
 	border:none; 
 	border-radius:7px; 
 	background:#e1ecf9;
 	}
-#header_pesquisa .btn{
+.header_pesquisa .btn{
 	width:25px; 
 	height:25px; 
 	background:url(img/icons/busca-icon.png) no-repeat; 
@@ -1663,8 +1682,6 @@ a.small:hover .txt_cod{
 
 
 /*CORPO - LOGIN*/
-
-/*CORPO - LOGIN*/
 #corpo_login{
 	width:750px; 
 	height:480px; 
@@ -1918,6 +1935,13 @@ a.small:hover .txt_cod{
 	margin-bottom:5px; 
 	padding:3px;
 	}
+.r-cotacao .form-cotacao select{
+	height:25px; 
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	}
 .r-cotacao .form-cotacao textarea{
 	border:1px solid #CCC; 
 	border-radius:5px; 
@@ -2009,6 +2033,13 @@ a.small:hover .txt_cod{
 	display: block;
 	}
 .corpo-painel input{
+	height:25px; 
+	border:1px solid #CCC; 
+	border-radius:5px; 
+	margin-bottom:5px; 
+	padding:3px;
+	}
+.corpo-painel select{
 	height:25px; 
 	border:1px solid #CCC; 
 	border-radius:5px; 

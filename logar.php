@@ -35,7 +35,7 @@ else if($objectUsu[0]['activo'] == "N")
 else
 {
    //Cria a sessão e manda pra pagina principal.php
-   session_start();
+   @session_start();
    $_SESSION['codigo'] = $id;
    $_SESSION['usu_codigo_id'] = $usu_codigo_id;
       

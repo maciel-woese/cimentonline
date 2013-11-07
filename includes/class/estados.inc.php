@@ -120,7 +120,7 @@ class estados {
 	   		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$this->drop_var."'";
 	   	}
 
-		
+		$sql .= " order by capital, cid_dsc asc";
 		$query2	= $this->db->query($sql);
 		
 		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" > ';
@@ -149,7 +149,8 @@ class estados {
 	   		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$this->drop_var."'";
 	   	}
 
-		
+		$sql .= " order by capital, cid_dsc asc";
+
 		$query2	= $this->db->query($sql);
 		
 		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" onchange="this.form.submit()" > ';
@@ -198,6 +199,8 @@ class estados {
 		$this->setPostValues();
 	   
 		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$param."'";
+		
+		$sql .= " order by capital, cid_dsc asc";
 		
 		$query2	= $this->db->query($sql);
 

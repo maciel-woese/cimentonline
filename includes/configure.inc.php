@@ -28,10 +28,10 @@ if ($interno) {
 	
 }
 
-	$arhost[0]	= "127.0.0.1";
+$arhost[0]	= "67.205.67.147";
 	$ardb[0]	= "cimentonline";
-	$aruser[0]	= "root";
-	$arpass[0]	= "";
+	$aruser[0]	= "cimentonline";
+	$arpass[0]	= "fsj@1600";
 
 require_once('funcoes.inc.php');
 require_once('db.inc.php');

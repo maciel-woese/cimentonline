@@ -111,6 +111,7 @@ jQuery.noConflict();
 jQuery(function($){
    $("#tel").mask("(99) 9999-9999");
    $("#cel").mask("(99) 9999-9999");
+   $("#cep").mask("99.999-999");
    $("#tel-f").mask("(99) 9999-9999");
    $("#cel-f").mask("(99) 9999-9999");
    $("#tel-a").mask("(99) 9999-9999");
@@ -140,7 +141,6 @@ jQuery(function($){
 
 
 <!-- SCRIPT DE UF/CIDADES -->
-
 <script type="text/javascript">
 $(document).ready(function() {
     $('#UF').change(function(){
@@ -161,7 +161,6 @@ document.getElementById("UF").focus();
 return false;
 }
 }
-
 </script>
 <!-- FIM SCRIPT DE UF/CIDADES -->
 
@@ -269,7 +268,11 @@ return false;
         <br />
 
 		<label>Endereço Completo<font color="#FF0000">*</font>:</label><br />
-		<textarea name="end_completo" cols="34" placeholder="Endereço da sua empresa, N°, Bairro" style="resize:vertical;" required="required" ></textarea>											<br />
+		<input id="rua_numero" name="rua_numero" size="40" placeholder="Endereço da sua Empresa, N°" required="required" ><br />
+
+		<label>Bairro:</label><label style="margin-left: 115px;">CEP:</label><br />
+		<input id="bairro" name="bairro" size="20" placeholder="Bairro de sua Empresa" >
+		<input id="cep" name="cep" size="11" placeholder="00.000-000" style="margin-left: 10px;" ><br />
 		
         <label>Telefone<font color="#FF0000">*</font>:</label><label style="margin-left:58px;">Celular:</label><br />
 		<input id="tel-f" name="telefone" type="text" size="12" placeholder="(00) 0000.0000" required="required" />
