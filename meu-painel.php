@@ -35,14 +35,30 @@ if($_GET['idmenu'] == 'dados'){
 <!-- // MENU DINAMICO DO PAINEL -->
 
 
+<!-- MASCARA INPUT  -->
+<script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(function($){
+   $("#tel").mask("(99) 9999-9999");
+   $("#cel").mask("(99) 9999-9999");
+});
+</script>
+<!-- FIM MASCARA INPUT  -->
+
+
 <!-- STYLE LIGHTBOX -->
     <style>
         .black_overlay{display:none; position:fixed; top:0%; left:0%; width:100%; height:100%; background-color:#4674b8; z-index:1001;
                         -moz-opacity:0.3; opacity:.30; filter:alpha(opacity=30);}
-        .white_content{display:none; position:absolute; top:20%; left:38%; width:500px; height:auto; padding:16px; border:5px solid #4674b8;
+        .white_content{display:none; position:absolute; top:20%; left:30%; width:500px; height:auto; padding:16px; border:5px solid #4674b8;
                         border-radius:0 50px 0 50px; box-shadow:0 0 10px #000; background-color:white; z-index:1002; overflow:none;}
         .white_content label{font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#4674b8; margin-right:10px;}
         .white_content input{height:21px; padding:2px;}
+		.white_content_anuncio{display:none; position:absolute; top:20%; left:30%; width:auto; height:auto; padding:20px; border:5px solid #4674b8;
+                        border-radius:0 50px 0 50px; box-shadow:0 0 10px #000; background-color:white; z-index:1002; overflow:none;}
+        .white_content_anuncio label{font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#4674b8; margin-right:10px;}
+        .white_content_anuncio input{height:21px; padding:2px;}
     </style>
 <!-- FIM STYLE LIGHTBOX -->
 
@@ -157,14 +173,91 @@ if($_GET['idmenu'] == 'dados'){
 
     <!-- // ANUNCIOS -->
         <div id="corpo_cotacao" style="display:<?php echo $MA ?>;">
+        
+        <style>
+			*[name=anuncios]{padding:13px;}
+        	*[name=anuncios] li{display:inline-block; margin:0 6px;}
+			*[name=anuncios] li img{margin-bottom:5px;}
+			*[name=anuncios] li span{float:left; font-size:10px;}
+			*[name=anuncios] li button{float:right; padding:0 10px; background:#CCCCCC; border:1px solid #AAAAAA; border-radius:3px;}
+			*[name=anuncios] li button:hover{background:#AAAAAA; cursor:pointer;}
+			*[name=anuncios] li button:focus{background:#4674b8; color:#FFFFFF; border:1px solid #235BC5;}
+			*[name=anuncios] li .status{border-radius:500px; display:block; position:absolute; z-index:9999; margin:-100px 0 0 5px;}
+        </style>
 
             <div class="ident-cotacao">
                 <h3>Meus Anuncios</h3>
-            
-                <div class="rodape-table">
-                
+            	
+                <ul name="anuncios">
+                	<li>
+                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
+                        <!-- // STATUS -->
+                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:;" title="Ativo" />
+                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
+                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:none;" title="Inativo" />
+                        <!-- STATUS // -->
+                    	<span>Vencimento: <b>10/04/2014</b></span>
+                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
+                    </li>
+                    
+                    <li>
+                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
+                        <!-- // STATUS -->
+                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
+                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
+                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:;" title="Inativo" />
+                        <!-- STATUS // -->
+                    	<span>Vencimento: <b>10/10/2013</b></span>
+                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
+                    </li>
+                    
+                    <li>
+                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
+                        <!-- // STATUS -->
+                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
+                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
+                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:;" title="Inativo" />
+                        <!-- STATUS // -->
+                    	<span>Vencimento: <b>05/11/2013</b></span>
+                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
+                    </li>
+                    
+                    <li>
+                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
+                        <!-- // STATUS -->
+                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
+                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:;" title="Pendente" />
+                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:none;" title="Inativo" />
+                        <!-- STATUS // -->
+                    	<span>Vencimento: <b>em analise</b></span>
+                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
+                    </li>
+                </ul>
+
+                <div class="rodape-table">               
                 </div>
             </div>
+
+<!-- // LIGHTBOX -->
+    <div id="light-anuncio" class="white_content_anuncio">
+            
+            <center>
+            <img src="http://placehold.it/550x110&amp;text=Banner (550x110)" />
+            <br />
+            <form name=""  method="POST" action="" style="margin-top:10px;">
+                <label>Selecione um arquivo:&nbsp;</label>
+                <input name="" type="file" required="required" />
+                <input class="btn" style="height:25px; float:right;" type="submit" value="Atualizar" />
+            </form>
+            </center>
+        
+    </div>
+
+    <a href = "javascript:void(0)" onclick = "document.getElementById('light-anuncio').style.display='none';document.getElementById('fade-anuncio').style.display='none'">
+    <div id="fade-anuncio" class="black_overlay"></div></a>
+<!-- FIM LIGHTBOX // -->
+		
+        
 
         </div>
     <!-- FIM ANUNCIOS // -->
@@ -198,6 +291,32 @@ if($_GET['idmenu'] == 'dados'){
             <div class="ident-cotacao">
                 <h3>Dados da Empresa</h3>
 
+
+<!-- SCRIPT DE UF/CIDADES -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#UF').change(function(){
+      $.get("includes/services/estados.php?action=BUSCACITY", {
+        drop_var: $('#UF').val()
+      }, function(response){
+        $('#result_1').show();
+        $('#result_1').html(response);
+      });
+        return false;
+    });
+});
+
+function validar() {	
+if(document.getElementById("UF").selectedIndex == ""){
+window.alert("É necessário que você escolha o Estado e Cidade.");
+document.getElementById("UF").focus();
+return false;
+}
+}
+</script>
+<!-- FIM SCRIPT DE UF/CIDADES -->
+
+
                     <form action="edit_fornecedor.php" method="post" enctype="multipart/form-data">
                     <table style="float:left;">
                         <tr>
@@ -211,7 +330,7 @@ if($_GET['idmenu'] == 'dados'){
                         <tr>
                             <td><label>Estado:</label></td>
                             <td>
-                                <select id="estado" name="estado" style="width:277px; height:30px; margin-top:5px; padding:5px;">
+                                <select id="UF" name="estado" style="width:277px; height:30px; margin-top:5px; padding:5px;">
                                     <?php 
                                         $estados_cidades->getEstados($row['est_codigo']); 
                                     ?>
@@ -222,7 +341,9 @@ if($_GET['idmenu'] == 'dados'){
                         <tr>
                             <td><label>Cidade:</label></td>
                             <td>
-                                <select id="cidade" name="cidade" style="width:277px; height:30px; margin-top:5px; padding:5px;">
+                            	<span id="result_1" style="display: inline;">
+                                <select id="city" name="cidade" style="width:277px; height:30px; margin-top:5px; padding:5px;">
+                                <!--select id="cidade" name="cidade" style="width:277px; height:30px; margin-top:5px; padding:5px;"-->
                                     <?php 
                                         if($row['est_codigo'] != ""){
                                             $cidades = $estados_cidades->getArrayCidades($row['est_codigo']);
@@ -235,17 +356,19 @@ if($_GET['idmenu'] == 'dados'){
                                                 }
                                             }
                                         }
+
                                     ?>
-                                </select> 
+                                </select>
+                                </span> 
                             </td>
                         </tr>
                         <tr>
                             <td><label>Telefone:</label></td>
-                            <td><input name="telefone" type="text" size="40" value="<?=$row['for_tel']?>"></td>
+                            <td><input id="tel" name="telefone" type="text" size="40" value="<?=$row['for_tel']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Celular:</label></td>
-                            <td><input name="celular" type="text" size="40" value="<?=$row['for_cel']?>"></td>
+                            <td><input id="cel" name="celular" type="text" size="40" value="<?=$row['for_cel']?>"></td>
                         </tr>
                         <tr>
                             <td><label>Email:</label></td>
@@ -257,6 +380,10 @@ if($_GET['idmenu'] == 'dados'){
                         </tr>
                     </table>
                     <table style="float:left; margin-left:20px;">
+                        <tr style="height:60px;">
+                        	<td>Logotipo:</td>
+                            <td><input name="logo" type="file" style="width:240px;"></td>
+                        </tr>
                         <tr>
                             <td><label>Galeria de Fotos:</label></td>
                             <td>
@@ -330,12 +457,15 @@ if($_GET['idmenu'] == 'dados'){
             <textarea name="obs" cols="55" rows="5" placeholder="Digite aqui caso haja alguma observação para o solicitante."></textarea>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-            <input class="btn-enviar" type="submit" value="Enviar" style="float:right;" />
-                        </td>
-                    </tr>
-                </table>
+             	</table>
+            
+            <div style="width:260px; height:50px; float:left; margin-top:5px;">   
+            <label>Validade da Cotação:</label><br />
+            <input name="validade" type="text" size="15" placeholder="Digite até quando está valido essa cotação" style="width:96%!important;" />
+            </div>
+			
+            <input class="btn-enviar" type="submit" value="Enviar" style="float:right; margin-top:20px !important;" />
+
             </form>
             </div>             
         </div>

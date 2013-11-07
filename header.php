@@ -1,6 +1,6 @@
 <?php
 @session_start();
-ini_set("display_errors", 'on');
+ini_set("display_errors", 'off');
 
 
 
@@ -25,6 +25,7 @@ $listapagina = new paginas;
 <title>CimentOnline - Toda Obra Começa Aqui!</title>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type='text/javascript' src='js/cep.js'></script>
 
 
 </head>
@@ -39,22 +40,27 @@ $listapagina = new paginas;
 <hr />
 <h1 style="font:18px 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight:bold; color:#FFF; width:auto; margin:0 auto; margin-top:-37px;"><marquee scrolldelay="10" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">CimentOnline - Toda Obra começa aqui! O maior Portal de Cotação de Preço do Brasil</marquee></h1><br />
 <div id="header_logo"><a href="index.php"><img src="img/logo.png" /></a></div>
-<form action="" method="" >
-<div id="header_pesquisa">PESQUISAR <input type="text" /><input class="btn" type="submit" value="" /></div>
-</form>
+
+<div id="pesquisa-logon" style="float:rigth; height:35px;">
+
 <?php
 
 if(!empty($_SESSION["login"]))
 {
-  echo '<div class="logado"><div class="info"><i>Olá,</i> <b>'.$_SESSION['nome'].'</b></div> &nbsp;<a href="logout.php"><img style="float:right; margin-top:2px;" src="img/logout-icon.png" /></a></div>';
+  echo '<div class="logado"><i>Olá,</i> <b>'.$_SESSION['nome'].'</b> &nbsp;<a href="logout.php"><img style="float:right; margin-top:-7px;" src="img/logout-icon.png" /></a></div>';
 }
 else
 {
-  echo '<a class="logado" href="login.php"><div class="info">&nbsp;&nbsp;Acessar minha Conta</div></a>';
-  //echo '<a href="login.php"><div id="header_login"><img src="css/img/icons/acessar-login.png" title="" alt="" /></div></a>';
+  echo '<a class="logado" href="login.php">&nbsp;&nbsp;Acessar minha Conta&nbsp;&nbsp;</a>';
 }
 
 ?>
+
+<form action="busca.php" method="GET" >
+<div class="header_pesquisa">PESQUISAR <input name="pesquisa" type="text" /><input class="btn" type="submit" value="" /></div>
+</form>
+
+</div>
 
 <!-- BANNER TOPO (557x107) -->
 <div id="header_banner"><a><img src="img/banners/destaque-topo.png" /></a></div>

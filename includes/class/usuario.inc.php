@@ -1,4 +1,5 @@
 <?php
+ini_set("display_errors", 'on');
 class usuarios {
 
 	var $login;
@@ -160,6 +161,68 @@ class usuarios {
 		}
 
 		return $myData;
+	}
+
+	function buscaEmailExiste($email){
+		
+		$total	= $this->contaRegistros("select count(*) as count from tb_usuarios where login = '". $email."'");
+		
+		if($total == 1){
+			//envia email
+			$sql = "select usu_codigo from tb_usuarios where login = '". $email."'";	
+
+			$query2	= $this->db->query($sql);
+			$row = $this->db->fetch_assoc($query2);
+			
+
+			$sqlUpdate = "UPDATE `tb_usuarios`
+									SET
+										`chave_alt_senha`          = '".md5($row['usu_codigo'])."',
+										`permitir_alt_senha`          = '1'
+									WHERE
+									`usu_codigo` = '".$row['usu_codigo']."'";
+
+			$this->db->query($sqlUpdate);
+
+			$msg = "http://".$_SERVER['SERVER_NAME']."/cimentonline/redefinir-senha.php?redId=".md5($row['usu_codigo']);
+			$assunto = "Redefinição de Senha";
+
+			enviar_email($msg,$assunto);
+			$msg = "Enviamos um Email de redefinição de senha para o email ( ".$email." )";
+		}else{
+			//Mensagem informando que o email não exite;
+			$msg = "Email não encontrado em nossa base de dados";
+		}
+		
+
+		return $msg;
+	}
+
+	function alterarSenha($chave, $nova_senha){
+		
+		$total	= $this->contaRegistros("select count(*) as count from tb_usuarios where `chave_alt_senha` = '".$chave."' and `permitir_alt_senha` = 1");
+
+		if($total == 1){
+			$sqlUpdate = "UPDATE `tb_usuarios`
+									SET
+										`senha` = '".md5($nova_senha)."',
+										`permitir_alt_senha`          = '0'
+									WHERE
+									`chave_alt_senha` = '".$chave."' and `permitir_alt_senha` = 1 ";
+
+			if(!$this->db->query($sqlUpdate)){
+				//Não alterou
+				$msg = "Não alterou";
+			} else {
+				//OK
+				$msg = "OK";
+			}
+		}else{
+			$msg = "Chave Invalida";
+		}	
+
+			return $msg;
+
 	}
 
 }

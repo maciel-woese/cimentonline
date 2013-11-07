@@ -22,8 +22,6 @@ if((isset($_POST['nome']) and !empty($_POST['nome'])) and
 	$mail->FromName = $assunto;
 	//$mail->AddAddress("miltoncintra@gmail.com","Milton Cintra");
 	//$mail->AddAddress("victor@victorcintra.com.br","Victor Cintra");
-	
-	$mail->AddAddress("thompson.emerson@gmail.com","Thompson Emerson");
 	$mail->AddAddress("sousa.justa@gmail.com","Sousa Justa");
 	$mail->WordWrap = 50;
 	$mail->IsHTML(true);
