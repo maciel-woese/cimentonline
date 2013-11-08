@@ -223,7 +223,7 @@ function geraCodPonto($dig=8){
 	return $senha;
 }
 
-function enviar_email($msg,$assunto) {
+function enviar_email($msg, $assunto, $file=null) {
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
@@ -240,6 +240,9 @@ function enviar_email($msg,$assunto) {
 	$nome     = ucwords($assunto);
 	$email 	  = "sousa.justa@gmail.com";
 	//$mail->AddReplyTo("$email","$nome");
+	if($file!=null){
+		$mail->AddAttachment($file);
+	}
 	$msg1 .= "<br><br>\n<b> Mensagem Automatica</b><br><br>\n";
 	$mail->Subject = $assunto;
 	$mail->Body = $msg1 .' '. $msg;

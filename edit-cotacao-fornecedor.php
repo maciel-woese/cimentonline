@@ -3,6 +3,7 @@
 
 	require_once 'includes/configure.inc.php';
 	include_once 'includes/class/paginas.inc.php';
+	include_once 'includes/cotacao_pdf.php';
 	$list = new paginas; 
 
 	if(isset($_POST)){
@@ -16,6 +17,16 @@
 			");
 
 			if($query){
+				$pdf = new PDF($cotacao_id);
+				$pdf->AliasNbPages();
+				$pdf->AddPage();				
+				$pdf->getSubject();
+				$pdf->getCotacao();
+				$name = time().'.pdf';
+				$pdf->Output($name, 'F');
+				enviar_email(utf8_decode("Proposta de Cotação"), utf8_decode('Proposta de Cotação'), $name);
+				@unlink($name);
+
 				echo '<script>alert("'.utf8_encode("Cotação").' Atualizada!");window.location = "menu-painel.php?idmenu=cotacoes";</script>';
 			}
 			else{
