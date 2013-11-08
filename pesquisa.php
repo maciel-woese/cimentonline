@@ -210,7 +210,7 @@ function CheckAll() {
                         <p style="width:500px; text-align:justify;"><?php echo $objectFor['dados'][$i]['comentario'];?></p>             
                      </div>
                      
-                      <a href="pagina-cliente.php"><div class="mais-infor-cliente">Mais Detalhes!</div></a>
+                      <a href="pagina-cliente.php?id_for=<?=$objectFor['dados'][$i]['id_for']?>"><div class="mais-infor-cliente">Mais Detalhes!</div></a>
         
         		</div>
         	</li>
