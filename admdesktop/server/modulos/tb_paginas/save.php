@@ -16,12 +16,14 @@ if($_POST){
 			$pdo = $connection->prepare("
 					UPDATE tb_paginas SET 
 							dsc_pagina = ?,							
-							texto_pagina = ?							
+							texto_pagina = ?,
+							tipo_pagina = ?							
  					WHERE cod_pagina = ?
 			");
 			$params = array(
 				$_POST['dsc_pagina'],
 				$_POST['texto_pagina'],
+				$_POST['tipo_pagina'],
 				$_POST['cod_pagina']
 			);
 			$pdo->execute($params);
@@ -34,16 +36,18 @@ if($_POST){
 				INSERT INTO tb_paginas 
 					(
 						dsc_pagina,						
-						texto_pagina						
+						texto_pagina,
+						tipo_pagina
 					) 
 				VALUES 
 					(
-						?,	?			
+						?,	?, 	?	
 					)
 			");
 			$params = array(
 				$_POST['dsc_pagina'],		
-				$_POST['texto_pagina']		
+				$_POST['texto_pagina'],
+				$_POST['tipo_pagina']
 			);
 			$pdo->execute($params);
 		}

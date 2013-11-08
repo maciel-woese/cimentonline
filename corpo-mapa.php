@@ -240,23 +240,22 @@ if(isIe8){
 <!-- FIM BANNER CORPO (805x180) -->
 
 <div id="corpo_posts">
+	<?php
+		$posts = $listapagina->getPosts();
+		$i = 'e';
+		foreach ($posts as $key => $value) {
+			echo "
+				<div id=\"corpo_post_{$i}\">
+					<a href=\"subpage.php?action={$value['codigo']}\"><h1>{$value['titulo']}</h1></a>
+					<p>{$value['texto']}</p>
+					<a href=\"subpage.php?action={$value['codigo']}\"><span>Leia mais</span></a>
+				</div>
+			";
 
-<div id="corpo_post_e">
-<a href=""><h1>Concreto sustenta modal inovador em São Paulo</h1></a>
-<p>
-Até o final de 2013, os primeiros 2,9 quilômetros do monotrilho de São Paulo entrarão em funcionamento. O modal é a nova aposta da maior cidade do país para o transporte público. Sobre pilares de concreto pré-moldado de até 15 metros de altura cada um, trens irão se locomover para interligar o extremo leste paulistano alternativa para o transporte de massa nas grandes cidades.
-</p>
-<a href=""><span>Leia mais</span></a>
-</div>
-
-<div id="corpo_post_d">
-<a href=""><h1>Contra a maré, concreto precisa ser bem especificado</h1></a>
-<p>
-O concreto submerso no ambiente marinho tem que estar preparado para sofrer uma série de agressões ao longo do seu tempo de vida. Essa agressividade se potencializa em zonas sujeitas a ciclos de molhagem e secagem, como no caso de quebra-mares, pilares de ponte semissubmersos e outras estruturas. A variação das marés propicia manifestações patológicas, sendo que a mais frequente é a corrosão das armaduras...
-</p>
-<a href=""><span>Leia mais</span></a>
-</div>
-
+			if($i=='e'){$i='d';}
+			else{$i='e';}
+		}
+	?>
 
 </div>
 

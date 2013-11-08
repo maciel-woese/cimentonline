@@ -2,9 +2,9 @@
 
 class Connection extends PDO
 {
-	private $dsn = 'mysql:dbname=cimentonline;host=127.0.0.1';
-	private $user = 'root';
-	private $password = '';
+	private $dsn = 'mysql:dbname=cimentonline;host=67.205.67.147';
+	private $user = 'cimentonline';
+	private $password = 'fsj@1600';
 
 	public static $handle = null;
 

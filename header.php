@@ -124,7 +124,7 @@ else
         
         <li class="submenu"><a href="#"><span>Institucional</span></a>
 
-          <ul style="display:<? echo $minhasCotacoes; ?>;">
+          <ul style="display:<?php echo $minhasCotacoes; ?>;">
               <?php
                 $obj = $listapagina->getArraySubPage(); 
                 for($c=0; $c < count($obj); $c++)
@@ -135,7 +135,7 @@ else
             </ul>
 
 
-            <ul style="display:<? echo $meuPainel; ?>; margin-left:396px;">
+            <ul style="display:<?php echo $meuPainel; ?>; margin-left:396px;">
               <?php
                 $obj = $listapagina->getArraySubPage(); 
                 for($c=0; $c < count($obj); $c++)

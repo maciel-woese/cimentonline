@@ -2,6 +2,23 @@
 require_once("phpmailer/class.phpmailer.php");
 
 
+function truncate ($str, $length=10, $trailing='...'){
+     $length-=mb_strlen($trailing);
+       if (mb_strlen($str)> $length)
+       {
+ 
+         return mb_substr($str,0,$length).$trailing;
+ 
+      }
+       else
+      {
+ 
+         $res = $str;
+ 
+      } 
+      return $res;
+}
+
 function redireciona($link){
 if ($link==-1){
 	echo" <script>history.go(-1);</script>";

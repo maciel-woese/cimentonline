@@ -40,6 +40,29 @@ Ext.define('ShSolutions.view.tb_paginas.Edit', {
 							anchor: '100%',							
 							fieldLabel: 'Titulo'
 						},
+                        {
+                            xtype      : 'fieldcontainer',
+                            fieldLabel : 'Tipo de Pagina',
+                            defaultType: 'radiofield',
+                            defaults: {
+                                flex: 1
+                            },
+                            layout: 'hbox',
+                            items: [
+                                {
+                                    boxLabel  : 'Pagina',
+                                    name      : 'tipo_pagina',
+                                    checked   : true,
+                                    inputValue: '1',
+                                    id        : 'tipo_pagina_1'
+                                }, {
+                                    boxLabel  : 'Postagem',
+                                    name      : 'tipo_pagina',
+                                    inputValue: '2',
+                                    id        : 'tipo_pagina_2'
+                                }
+                            ]
+                        },
 						{
 							xtype: 'htmleditor',
 							name: 'texto_pagina',

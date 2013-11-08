@@ -115,7 +115,7 @@ class paginas {
 
 	function getArraySubPage(){
 
-       	$sqlB = "SELECT cod_pagina, dsc_pagina FROM tb_paginas where 1 ";
+       	$sqlB = "SELECT cod_pagina, dsc_pagina FROM tb_paginas where tipo_pagina = 1 ";
 
 		$query1	= $this->db->query($sqlB);
 		while($row = $this->db->fetch_object($query1)){
@@ -129,6 +129,23 @@ class paginas {
 
 		return $dados;
 
+	}
+
+	function getPosts(){
+		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 ";
+		$dados = array();
+		$query1	= $this->db->query($sqlB);
+		while($row = $this->db->fetch_object($query1)){
+			$texto = truncate($row->texto_pagina, 300, '...');
+
+			$dados[] = array(
+				'codigo' => $row->cod_pagina,
+				'titulo' => $row->dsc_pagina,
+				'texto' => $texto
+			);	
+		}
+
+		return $dados;		
 	}
 
 }
