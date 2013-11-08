@@ -188,50 +188,40 @@ jQuery(function($){
             <div class="ident-cotacao">
                 <h3>Meus Anuncios</h3>
             	
-                <ul name="anuncios">
-                	<li>
-                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
-                        <!-- // STATUS -->
-                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:;" title="Ativo" />
-                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
-                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:none;" title="Inativo" />
-                        <!-- STATUS // -->
-                    	<span>Vencimento: <b>10/04/2014</b></span>
-                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
-                    </li>
-                    
-                    <li>
-                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
-                        <!-- // STATUS -->
-                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
-                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
-                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:;" title="Inativo" />
-                        <!-- STATUS // -->
-                    	<span>Vencimento: <b>10/10/2013</b></span>
-                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
-                    </li>
-                    
-                    <li>
-                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
-                        <!-- // STATUS -->
-                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
-                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:none;" title="Pendente" />
-                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:;" title="Inativo" />
-                        <!-- STATUS // -->
-                    	<span>Vencimento: <b>05/11/2013</b></span>
-                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
-                    </li>
-                    
-                    <li>
-                		<img width="200" height="100" src="http://placehold.it/200x100&amp;text=Anuncio" /><br />
-                        <!-- // STATUS -->
-                        <img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:none;" title="Ativo" />
-                        <img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:;" title="Pendente" />
-                        <img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:none;" title="Inativo" />
-                        <!-- STATUS // -->
-                    	<span>Vencimento: <b>em analise</b></span>
-                        <button onclick="document.getElementById('light-anuncio').style.display='block';document.getElementById('fade-anuncio').style.display='block'">Alterar</button>
-                    </li>
+                <ul class="anuncios">
+                    <?php 
+                        if(isset($_SESSION['codigo'])){
+                            $query = $listapagina->db->query("
+                                select a.*, o.periodo from tb_anuncios as a
+                                inner join produtos_carrinho as p ON (p.carrinho_id=a.carrinho_id)
+                                inner join tb_opcoes_anuncio as o ON (p.opcao_anuncio_id=o.id)
+                                where su_codigo = {$_SESSION['codigo']}
+                            ");
+
+                            while($row = $listapagina->db->fetch_object($query)){
+                                $vencimento = date('d/m/Y', strtotime("+".$row->periodo." days", strtotime($row->dt_ativacao)));
+
+                                if(strtotime($row->dt_ativacao) > time()){
+                                    if($row->ativo=='1'){
+                                        $img = '<img src="http://placehold.it/15x15/197D19&amp;text=&nbsp;" class="status" style="display:;" title="Ativo" />';
+                                    }
+                                    else if($row->ativo=='2'){
+                                        $img = '<img src="http://placehold.it/15x15/0B7A96&amp;text=&nbsp;" class="status" style="display:;" title="Pendente" />';
+                                    }
+                                }
+                                else{
+                                    $img = '<img src="http://placehold.it/15x15/f80000&amp;text=&nbsp;" class="status" style="display:none;" title="Inativo" />';
+                                }
+
+                                echo '<li>
+                                    <img width="200" height="100" src="http://placehold.it/200x100&amp;text='.$row->dsc_apresentacao.'" /><br />
+                                    '.$img.'                                    
+                                    <span>Vencimento: <b>'.$vencimento.'</b></span>
+                                    <button codigo="'.$row->anun_codigo.'">Alterar</button>
+                                </li>';
+                            }
+                        }
+                    ?>
                 </ul>
 
                 <div class="rodape-table">               
@@ -244,9 +234,10 @@ jQuery(function($){
             <center>
             <img src="http://placehold.it/550x110&amp;text=Banner (550x110)" />
             <br />
-            <form name=""  method="POST" action="" style="margin-top:10px;">
+            <form name=""  method="POST" action="edit_anuncio.php" style="margin-top:10px;" enctype="multipart/form-data">
                 <label>Selecione um arquivo:&nbsp;</label>
-                <input name="" type="file" required="required" />
+                <input name="logo" type="file" required="required" />
+                <input name="codigo" id="anuncio_codigo" type="hidden" required="required" />
                 <input class="btn" style="height:25px; float:right;" type="submit" value="Atualizar" />
             </form>
             </center>
@@ -266,7 +257,7 @@ jQuery(function($){
 
     <!-- // DADOS -->
         <div id="corpo_cotacao" style="display:<?php echo $DE ?>;">
-            <?
+            <?php
                 if($_GET['idmenu']=='dados'){
                     $query = $listapagina->db->query("
                         SELECT * FROM `tb_fornecedor` where for_codigo = {$_SESSION['usu_codigo_id']}
@@ -304,6 +295,12 @@ $(document).ready(function() {
       });
         return false;
     });
+
+    $('ul.anuncios li button').click(function(){
+        $('#light-anuncioz').css('display', 'block');
+        $('#fade-anuncio').css('display', 'block');
+        $('#anuncio_codigo').val($(this).attr('codigo'));
+    })
 });
 
 function validar() {	

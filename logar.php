@@ -24,13 +24,11 @@ for($i=0; $i < count($objectUsu['dados']); $i++)
 //Verifica se n existe uma linha com o login e a senha digitado
 if ($num_logar == 0)
 {
-   echo "Login ou senha invalido.";
-   echo "<br><a href='javascript:window.history.go(-1)'>Clique aqui para volta.</a>";   
+   echo '<script>alert("Login Invalido!");history.back();</script>';
 } 
 else if($objectUsu[0]['activo'] == "N")
 {
-   echo "Usuario não ativado, verifique seu e-mail para ativa a conta.";
-   echo "<br><a href='javascript:window.history.go(-1)'>Clique aqui para volta.</a>"; 
+   echo '<script>alert("Usuario Desativado!");history.back();</script>';
 }
 else
 {

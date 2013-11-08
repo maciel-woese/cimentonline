@@ -17,6 +17,7 @@
 		$email = !empty($_POST['email']) ? $_POST['email'] : null;
 		$site = !empty($_POST['site']) ? $_POST['site'] : null;
 				
+		$logo = !empty($_FILES['logo']['name']) ? $_FILES['logo'] : null;
 		$ft01 = !empty($_FILES['ft01']['name']) ? $_FILES['ft01'] : null;
 		$ft02 = !empty($_FILES['ft02']['name']) ? $_FILES['ft02'] : null;
 		$ft03 = !empty($_FILES['ft03']['name']) ? $_FILES['ft03'] : null;
@@ -24,6 +25,7 @@
 		
 		$set = '';
 
+		if($logo!=null){$logo = $redim->Redimensionar($logo, 160, "images"); $set .= "logo = '{$logo}',";}
 		if($ft01!=null){$ft01 = $redim->Redimensionar($ft01, 160, "images"); $set .= "ft01 = '{$ft01}',";}
 		if($ft02!=null){$ft02 = $redim->Redimensionar($ft02, 160, "images"); $set .= "ft02 = '{$ft02}',";}
 		if($ft03!=null){$ft03 = $redim->Redimensionar($ft03, 160, "images"); $set .= "ft03 = '{$ft03}',";}

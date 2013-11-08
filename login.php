@@ -31,6 +31,9 @@ $usuarios = new usuarios;
 
             if(isset($_POST['action']))   $action    =  $_POST['action'];
             if(isset($_GET['action']))    $action    =  $_GET['action'];
+            if(!isset($action)){
+                $action = '';
+            }
 
             switch($action){
                 

@@ -59,6 +59,20 @@
 		    		where transaction_id = '{$transaction_id}' or referencia = '{$reference}'
             	");
 
+            	if($status=='3'){
+            		$query = $list->db->query("
+	            		select * from carrinho
+			    		where transaction_id = '{$transaction_id}' or referencia = '{$reference}' LIMIT 1
+	            	");
+
+	            	$carrinho = $listapagina->db->fetch_assoc($query);
+	            	$list->db->query("
+	            		update tb_anuncios set ativo = 1, dt_ativacao = NOW()
+			    		where carrinho_id = {$carrinho['id']}
+	            	");
+
+            	}
+
 	        } catch (PagSeguroServiceException $e) {
 	            die($e->getMessage());
 	        }

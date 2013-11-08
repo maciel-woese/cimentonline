@@ -27,8 +27,8 @@
     	<div class="info-pagina-cliente">
         	
             <?php 
-                if(!empty($fornecedor['ft01'])){
-                    echo "<img class='logo-cliente' src='{$fornecedor['ft01']}' alt='Logo Cliente' height='150px' width='150px' />";
+                if(!empty($fornecedor['logo'])){
+                    echo "<img class='logo-cliente' src='{$fornecedor['logo']}' alt='Logo Cliente' height='150px' width='150px' />";
                 }
             ?>
             <div class="info-conteudo-pagina-cliente">
@@ -42,9 +42,9 @@
                 	<tr>
                     	<td>
                             <?php 
-                                if(!empty($fornecedor['ft04'])){
-                                    echo "<a href='{$fornecedor['ft04']}' rel='lightbox[plants]'>
-                                            <img src='{$fornecedor['ft04']}' height='150px' width='150px' alt='' />
+                                if(!empty($fornecedor['ft01'])){
+                                    echo "<a href='{$fornecedor['ft01']}' rel='lightbox[plants]'>
+                                            <img src='{$fornecedor['ft01']}' height='150px' width='150px' alt='' />
                                         </a>";
                                 }
                             ?>
@@ -69,7 +69,15 @@
                                 }
                             ?>
             			</td>
-                        <td>&nbsp;</td> 
+                        <td>
+                            <?php 
+                                if(!empty($fornecedor['ft04'])){
+                                    echo "<a href='{$fornecedor['ft04']}' rel='lightbox[plants]'>
+                                            <img src='{$fornecedor['ft04']}' height='150px' width='150px' alt='' />
+                                        </a>";
+                                }
+                            ?>
+                        </td> 
                     </tr>
             	</table>            
             </div>

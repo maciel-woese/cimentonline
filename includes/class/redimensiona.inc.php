@@ -1,7 +1,7 @@
 <?php
 class Redimensiona{
 	
-	public function Redimensionar($imagem, $largura, $pasta){
+	public function Redimensionar($imagem, $largura, $pasta, $autura=140){
 		
 		$name = md5(uniqid(rand(),true));
 		
@@ -14,7 +14,6 @@ class Redimensiona{
 		}
 		$x   = imagesx($img);
 		$y   = imagesy($img);
-		$autura = 140;//($largura * $y)/$x;
 		
 		$nova = imagecreatetruecolor($largura, $autura);
 		imagecopyresampled($nova, $img, 0, 0, 0, 0, $largura, $autura, $x, $y);
