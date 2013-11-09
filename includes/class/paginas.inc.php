@@ -131,8 +131,9 @@ class paginas {
 
 	}
 
-	function getPosts($limit=100){
-		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 order by cod_pagina desc limit {$limit}";
+	function getPosts($start, $limit){
+		$count = $this->contaRegistros('SELECT count(*) as count FROM tb_paginas where tipo_pagina = 2');
+		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 order by cod_pagina desc limit {$start}, {$limit}";
 		$dados = array();
 		$query1	= $this->db->query($sqlB);
 		while($row = $this->db->fetch_object($query1)){
@@ -145,7 +146,7 @@ class paginas {
 			);	
 		}
 
-		return $dados;		
+		return array('dados'=> $dados, 'total'=> $count);
 	}
 
 }

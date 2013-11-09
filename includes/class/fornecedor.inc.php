@@ -297,7 +297,7 @@ class fornecedor {
 		$param = NULL;
 
 		$sql	= "	SELECT f.for_codigo, f.for_dsc, f.for_endereco, f.for_email, f.for_site, 
-					f.for_comentario, f.for_tel, f.for_cel, 
+					f.for_comentario, f.for_tel, f.for_cel,  f.logo, 
 					e.est_codigo, e.est_dsc,
 					c.cid_codigo, c.cid_dsc  
 					FROM tb_fornecedor f 
@@ -349,6 +349,7 @@ class fornecedor {
 				'endereco'  =>	$obj->for_endereco,
 				'email'  =>	$obj->for_email,
 				'site'  =>	$obj->for_site,
+				'logo'  =>	$obj->logo,
 				'telefone'  =>	$obj->for_tel,
 				'celular'  =>	$obj->for_cel,
 				'comentario'  =>	$obj->for_comentario

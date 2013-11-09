@@ -241,7 +241,7 @@ if(isIe8){
 
 <div id="corpo_posts">
 	<?php
-		$posts = $listapagina->getPosts(2);
+		$posts = $listapagina->getPosts(0, 2);
 		$i = 'e';
 		foreach ($posts as $key => $value) {
 			echo "
