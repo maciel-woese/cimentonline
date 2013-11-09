@@ -10,10 +10,12 @@
 		$cotacao_id = !empty($_POST['cotacao_id']) ? $_POST['cotacao_id'] : null;
 		$prazo = !empty($_POST['prazo']) ? $_POST['prazo'] : null;
 		$obs = !empty($_POST['obs']) ? $_POST['obs'] : null;
+		$valor = !empty($_POST['valor']) ? $_POST['valor'] : '0.00';
 		
 		if($cotacao_id!=null and $prazo!=null){
 			$query = $list->db->query("
-				update tb_cotacao set prazo_entrega = '{$prazo}', obs = '{$obs}' where codigo = {$cotacao_id}
+				update tb_cotacao set prazo_entrega = '{$prazo}', obs = '{$obs}', valor = '{$valor}'
+				where codigo = {$cotacao_id}
 			");
 
 			if($query){

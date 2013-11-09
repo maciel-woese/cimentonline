@@ -82,7 +82,7 @@ jQuery(function($){
         <div class="ident-cotacao">
             <h3>Minha Lista de Cotações</h3>
             
-            <table border="1" style="width:100%!important">
+            <table border="1" style="width:98%!important">
                 <tr>
                     <th width="250">Solicitante</th>
                     <th>Tipo de Cimento</th>
@@ -106,15 +106,14 @@ jQuery(function($){
                         $row = $listapagina->db->fetch_assoc($queryCount);
                         
                         $query = $listapagina->db->query("
-                            SELECT c.*, t.descricao, t.valor, DATE_FORMAT(c.data_cadastro, '%d/%m/%Y') as data_cadastro FROM  `tb_cotacao` as c left join tb_tipo_cimento as t on (c.tp_cimento = t.codigo)
+                            SELECT c.*, t.descricao, DATE_FORMAT(c.data_cadastro, '%d/%m/%Y') as data_cadastro 
+                            FROM  `tb_cotacao` as c left join tb_tipo_cimento as t on (c.tp_cimento = t.codigo)
                             where cod_fornecedor = {$_SESSION['usu_codigo_id']} order by c.codigo desc
                         ");
 
                         $class = '';
-                        
                         while ( $obj = $listapagina->db->fetch_object($query) ){
-                            $valor = ($obj->valor * $obj->qtd_sacos);
-                            $valor = number_format($valor,2,",",".");
+                            $valor = number_format($obj->valor,2,",",".");
                             echo "<tr class='{$class}'>
                                 <td>".$obj->nm_solicitante."</td>
                                 <td>".$obj->descricao."</td>
@@ -445,7 +444,7 @@ return false;
                         </td>
                         <td>
             <label>Preço:</label><br />
-            <input name="preco" type="text" size="15" placeholder="Digite o Preço" style="width:96%!important" />
+            <input name="valor" type="text" size="15" placeholder="Digite o Preço" style="width:96%!important" />
                         </td>
                     </tr>
                     <tr>
