@@ -113,7 +113,7 @@ jQuery(function($){
                         $class = '';
                         
                         while ( $obj = $listapagina->db->fetch_object($query) ){
-                            $valor = ((float) $obj->valor * (int) $obj->qtd_sacos);
+                            $valor = ($obj->valor * $obj->qtd_sacos);
                             $valor = number_format($valor,2,",",".");
                             echo "<tr class='{$class}'>
                                 <td>".$obj->nm_solicitante."</td>
