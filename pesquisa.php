@@ -198,11 +198,15 @@ function CheckAll() {
             <li>
     			<div id="bloco_cliente">
         			<div class="check_cotar"><input type="checkbox" name="UIDL" value="<?=$objectFor['dados'][$i]['id_for']?>" attr-name="<?=$objectFor['dados'][$i]['nome']?>" /></div>
-                    
-                    
-        
-       				 <img src="clientes/cliente1/logo.png" title="Cliente 001" />
-                     
+                    <?php
+                        if(empty($objectFor['dados'][$i]['logo'])){
+                            echo '<img src="clientes/cliente1/logo.png" />';                            
+                        }
+                        else{
+                            echo '<img src="'.$objectFor['dados'][$i]['logo'].'" />';                            
+                        }
+                    ?>
+
                      <div class="text_dados">
                      	<h2 style="width:500px;"><?php echo $objectFor['dados'][$i]['nome'];?></h2>
                         <h4 style="width:500px;"><?php echo $objectFor['dados'][$i]['endereco'];?> </h4>

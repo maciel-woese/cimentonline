@@ -405,6 +405,7 @@ body{background:#dfdede;}
 	}
 
 #corpo_post_e{
+	border-top:4px #000;
 	width:370px; 
 	height:400px; 
 	float:left; 
@@ -416,6 +417,7 @@ body{background:#dfdede;}
 	}
 
 #corpo_post_d{
+	border-top:4px #000;
 	width:370px; 
 	height:400px; 
 	float:right; 

@@ -8,17 +8,14 @@
 
     
 <?php
-    if(isset($_GET['for_id']) and !empty($_GET['for_id'])){
+    if(isset($_GET['id_for']) and !empty($_GET['id_for'])){
         $query = $listapagina->db->query("
             SELECT f.*, e.est_dsc, c.cid_dsc FROM  `tb_fornecedor` as f 
             left join tb_estado as e ON (f.est_codigo=e.est_codigo)
             left join tb_cidade as c ON (f.cid_codigo=c.cid_codigo)
-            where for_codigo = {$_GET['for_id']} limit 1
+            where for_codigo = {$_GET['id_for']} limit 1
         ");
         $fornecedor = $listapagina->db->fetch_assoc($query);
-    }
-    else{
-        header('Location: pesquisa.php');
     }
 ?>
 <!-- CORPO -->

@@ -131,8 +131,8 @@ class paginas {
 
 	}
 
-	function getPosts(){
-		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 ";
+	function getPosts($limit=100){
+		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 order by cod_pagina desc limit {$limit}";
 		$dados = array();
 		$query1	= $this->db->query($sqlB);
 		while($row = $this->db->fetch_object($query1)){

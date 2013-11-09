@@ -8,14 +8,14 @@ if($_POST){
 	try {
 		require('../../autoLoad.php');
 		$buscar = new Buscar();
-		$tabela = 'tb_paginas';
+		$tabela = 'tb_posts';
 		
 		if( isset($_POST['action']) AND $_POST['action'] == 'GET_VALUES' ){
 		
 			$pdo = $connection->prepare("
 				SELECT * 
 				FROM tb_paginas
-				WHERE cod_pagina=:id and tipo_pagina = 1
+				WHERE cod_pagina=:id and tipo_pagina = 2
 			");
 			
 			$pdo->bindParam(':id', $_POST['id']);
@@ -35,7 +35,7 @@ if($_POST){
 			$order 	= $pag->getOrder();
 			
 			$result = array();
-			$buscar->setBusca(array('tipo_pagina', 'tb_paginas.tipo_pagina'), '1');
+		 	$buscar->setBusca(array('tipo_pagina', 'tb_paginas.tipo_pagina'), '2');
 			if(isset($_POST['action']) AND $_POST['action'] == 'FILTER'){
 				$buscar->setBusca(array('dsc_pagina', 'tb_paginas.dsc_pagina'), $_POST['dsc_pagina'], 'like');
 				$buscar->setBusca(array('texto_pagina', 'tb_paginas.texto_pagina'), $_POST['texto_pagina'], 'like');

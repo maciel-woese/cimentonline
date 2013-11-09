@@ -241,7 +241,7 @@ if(isIe8){
 
 <div id="corpo_posts">
 	<?php
-		$posts = $listapagina->getPosts();
+		$posts = $listapagina->getPosts(2);
 		$i = 'e';
 		foreach ($posts as $key => $value) {
 			echo "
@@ -256,7 +256,8 @@ if(isIe8){
 			else{$i='e';}
 		}
 	?>
-
+	<div style="clear:both;"></div>
+	<a href="posts.php"><span>Mais Postagens</span></a>
 </div>
 
 </div>

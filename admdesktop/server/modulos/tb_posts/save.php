@@ -6,7 +6,7 @@
 
 if($_POST){
 	require('../../autoLoad.php');
-	$tabela = 'tb_paginas';
+	$tabela = 'tb_posts';
 	try {
 		
 		if($_POST['action'] == 'EDITAR'){
@@ -17,7 +17,7 @@ if($_POST){
 					UPDATE tb_paginas SET 
 							dsc_pagina = ?,							
 							texto_pagina = ?,
-							tipo_pagina = 1
+							tipo_pagina = 2							
  					WHERE cod_pagina = ?
 			");
 			$params = array(
@@ -40,7 +40,7 @@ if($_POST){
 					) 
 				VALUES 
 					(
-						?,	?, 	1
+						?,	?, 	2
 					)
 			");
 			$params = array(
