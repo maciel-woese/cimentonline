@@ -38,8 +38,8 @@
 		}
 
 		function Header(){
-			if(!empty($fornecedor['ft01'])){
-		    	$this->Image($fornecedor['ft01'], 10,6,30);	
+			if(!empty($fornecedor['logo'])){
+		    	$this->Image($fornecedor['logo'], 10,6,30);	
 			}
 			$data = date('d')." de ".monthName(date('m'))." de ".date('Y');
 
