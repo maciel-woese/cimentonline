@@ -18,10 +18,10 @@
 
 		function setDados(){
 			$query = $this->db->query("
-				SELECT t.descricao as tipo, c.*, t.valor, e.descricao as entrega from tb_cotacao as c 
+				SELECT t.descricao as tipo, c.*, e.descricao as entrega from tb_cotacao as c 
 				inner join tb_tipo_cimento as t on (c.tp_cimento=t.codigo)
 				inner join tb_tipo_entrega as e on (c.tp_entrega=e.codigo)
-				where c.codigo = {$this->cotacao_id} limit 1
+				where c.codigo = 9 limit 1
 			");
 
 			$this->cotacao = $this->db->fetch_assoc($query);
@@ -30,7 +30,7 @@
 				SELECT f.*, e.est_dsc, c.cid_dsc FROM  `tb_fornecedor` as f 
 				left join tb_estado as e ON (f.est_codigo=e.est_codigo)
 				left join tb_cidade as c ON (f.cid_codigo=c.cid_codigo)
-				where for_codigo = {$this->cotacao['cod_fornecedor']} limit 1
+				where for_codigo = 33 limit 1
 			");
 			$this->fornecedor = $this->db->fetch_assoc($query);
 
@@ -39,7 +39,7 @@
 
 		function Header(){
 			if(!empty($fornecedor['logo'])){
-		    	$this->Image($fornecedor['logo'], 10,6,30);	
+		    	$this->Image("../images/ba7b5b8abcf98bb284cfa39f8fcaf0b2_1384007109.png", 10,6,30);	
 			}
 			$data = date('d')." de ".monthName(date('m'))." de ".date('Y');
 
@@ -76,7 +76,6 @@
 				'Especificação dos Produtos', 
 				'Quantidades',
 				'Preço Unit.',
-				'Pzos pgto',
 				'Tipo de Entrega'
 			);
 			$this->table($header, $this->cotacao);
@@ -87,7 +86,7 @@
 			$this->MultiCell(0, 5, utf8_decode('Condições para o atendimento:
 
 			>	Os preços constantes na cotação são com ICMS incluso de acordo com a legislação pertinente e refletem as condições específicas de cada negociação e podem refletir descontos incondicionais. Ou seja, os preços propostos nesse pedido, após o aceite do cliente e confirmação de nossa empresa, refletem individualmente a realidade econômica, financeira, comercial, jurídica e tributária na data vigente. Quaisquer modificações ou alterações tributárias ou de qualquer outra natureza, quer sejam criando, extinguindo, aumentando ou modificando tributos, contribuições fiscais, ou quaisquer outras espécies de prestação pecuniária compulsória, poderão determinar a revisão e/ou alteração nos preços informados antes da conclusão do atendimento ao pedido aceito;
-			>	Os preços e condições são válidos por 3 dias e estarão sujeitos a alterações apenas para pedidos ainda não aceitos;
+			>	Os preços e condições são válidos por '.$this->cotacao['validade_proposta'].' e estarão sujeitos a alterações apenas para pedidos ainda não aceitos;
 			>	Todos os pedidos estão sujeitos à aceitação de nossa empresa, que se dará via confirmação por e-mail, fax e/ou ligação telefônica com o contato que assina a cotação;
 			>	Qualquer fatura que não tiver sido paga pelo cliente ou comprador após o prazo concedido e acordado na proposta aceita pelas partes, sofrerá os encargos constantes nas observações dos boletos que acobertam a operação;
 			>	As mercadorias serão entregues na obra ou retiradas em nossos depósitos dentro do prazo negociado.
@@ -101,7 +100,7 @@
 
 		function table($header, $row){
 		    // Column widths
-		    $w = array(60, 30, 35, 30, 35);
+		    $w = array(60, 30, 35, 65);
 		    // Header
 		    for($i=0;$i<count($header);$i++)
 		        $this->Cell($w[$i],7,utf8_decode($header[$i]),1,0,'C');
@@ -110,8 +109,8 @@
 	        $this->Cell($w[0],6,$row['tipo'],'LR');
 	        $this->Cell($w[1],6,$row['qtd_sacos'],'LR');
 	        $this->Cell($w[2],6,$row['valor'],'LR',0,'R');
-	        $this->Cell($w[3],6,"10 dias*",'LR',0,'R');
-	        $this->Cell($w[4],6,$row['entrega'],'LR',0,'R');
+	        //$this->Cell($w[3],6,"10 dias*",'LR',0,'R');
+	        $this->Cell($w[7],6,$row['entrega'],'LR',0,'R');
 	        $this->Ln();
 
 	        //$row['prazo_entrega']
@@ -123,7 +122,7 @@
 
 		    $this->Cell(60,6,$row['prazo_entrega'],'LR');
 	        $this->Cell(95,6,$row['obs'],'LR');
-	        $this->Cell(35,6,'3 dias','LR',0,'R');
+	        $this->Cell(35,6,$row['validade_proposta'],'LR',0,'R');
 	        $this->Ln();
 
 		    // Closing line
@@ -136,4 +135,5 @@
 		    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 		}
 	}
+
 ?>

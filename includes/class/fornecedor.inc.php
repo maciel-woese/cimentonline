@@ -139,12 +139,16 @@ class fornecedor {
 					if ($erro > 0)
 					{
 						$this->db->rollback();
-						header('Location: cadastro.php');
+						//header('Location: cadastro.php');
+						$link = "cadastro.php"; // especifica o endereço
+                        redireciona($link); // chama a função  
 					}
 					else
 					{
 						$this->db->commit();
-						header('Location: publicacao.php?action=FORCADASTRADOCOMSUCESSO&razao='.$this->razao_social.'&end='.$this->end_completo);
+						//header('Location: publicacao.php?action=FORCADASTRADOCOMSUCESSO&razao='.$this->razao_social.'&end='.$this->end_completo);
+						$link = "publicacao.php?action=FORCADASTRADOCOMSUCESSO&razao=".$this->razao_social."&end=".$this->end_completo; // especifica o endereço
+                        redireciona($link); // chama a função  
 					}	
 				}
 			}		
