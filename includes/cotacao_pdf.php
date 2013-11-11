@@ -21,7 +21,7 @@
 				SELECT t.descricao as tipo, c.*, e.descricao as entrega from tb_cotacao as c 
 				inner join tb_tipo_cimento as t on (c.tp_cimento=t.codigo)
 				inner join tb_tipo_entrega as e on (c.tp_entrega=e.codigo)
-				where c.codigo = 9 limit 1
+				where c.codigo = '{$this->cotacao_id}' limit 1
 			");
 
 			$this->cotacao = $this->db->fetch_assoc($query);
@@ -30,7 +30,7 @@
 				SELECT f.*, e.est_dsc, c.cid_dsc FROM  `tb_fornecedor` as f 
 				left join tb_estado as e ON (f.est_codigo=e.est_codigo)
 				left join tb_cidade as c ON (f.cid_codigo=c.cid_codigo)
-				where for_codigo = 33 limit 1
+				where for_codigo = '{$this->cotacao['cod_fornecedor']}' limit 1
 			");
 			$this->fornecedor = $this->db->fetch_assoc($query);
 
