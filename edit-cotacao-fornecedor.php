@@ -11,10 +11,10 @@
 		$prazo = !empty($_POST['prazo']) ? $_POST['prazo'] : null;
 		$obs = !empty($_POST['obs']) ? $_POST['obs'] : null;
 		$valor = !empty($_POST['valor']) ? $_POST['valor'] : '0.00';
-		
+		$validade_proposta = !empty($_POST['validade']) ? $_POST['validade'] : null;
 		if($cotacao_id!=null and $prazo!=null){
 			$query = $list->db->query("
-				update tb_cotacao set prazo_entrega = '{$prazo}', obs = '{$obs}', valor = '{$valor}'
+				update tb_cotacao set prazo_entrega = '{$prazo}', obs = '{$obs}', valor = '{$valor}', validade_proposta = '{$validade_proposta}'
 				where codigo = {$cotacao_id}
 			");
 
@@ -29,7 +29,7 @@
 				enviar_email(utf8_decode("Proposta de Cotação"), utf8_decode('Proposta de Cotação'), $name);
 				@unlink($name);
 
-				echo '<script>alert("'.utf8_encode("Cotação").' Atualizada!");window.location = "menu-painel.php?idmenu=cotacoes";</script>';
+				echo '<script>alert("Cotação Atualizada!");window.location = "meu-painel.php?idmenu=cotacoes";</script>';
 			}
 			else{
 				echo '<script>alert("Erro ao Atualizar!");history.back();</script>';

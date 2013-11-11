@@ -241,9 +241,12 @@ if(isIe8){
 
 <div id="corpo_posts">
 	<?php
-		$posts = $listapagina->getPosts(0, 2);
+		$object = $listapagina->getPosts(0, 2);
+
 		$i = 'e';
+		$posts = $object['dados'];
 		foreach ($posts as $key => $value) {
+			
 			echo "
 				<div id=\"corpo_post_{$i}\">
 					<a href=\"subpage.php?action={$value['codigo']}\"><h1>{$value['titulo']}</h1></a>
@@ -256,8 +259,8 @@ if(isIe8){
 			else{$i='e';}
 		}
 	?>
-	<div style="clear:both;"></div>
-	<a href="posts.php"><span>Mais Postagens</span></a>
+	
+	<a href="posts.php" class="ver-mais"> Ver mais Posts... </a>
 </div>
 
 </div>

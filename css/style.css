@@ -405,7 +405,6 @@ body{background:#dfdede;}
 	}
 
 #corpo_post_e{
-	border-top:4px #000;
 	width:370px; 
 	height:400px; 
 	float:left; 
@@ -417,7 +416,6 @@ body{background:#dfdede;}
 	}
 
 #corpo_post_d{
-	border-top:4px #000;
 	width:370px; 
 	height:400px; 
 	float:right; 
@@ -426,6 +424,23 @@ body{background:#dfdede;}
 #corpo_post_d:hover{
 	border-top:4px solid #4674b8; 
 	background:#F2F2F2;
+	}
+
+.ver-mais{
+	width:200px;
+	height:25px;
+	padding-top:5px;
+	background:#4674b8;
+	color:#FFFFFF;
+	margin:10px auto;
+	margin-top:450px;
+	display:block;
+	position:relative;
+	z-index:9999;
+	text-align:center;
+	}
+.ver-mais:hover{
+	background:#000000;
 	}
 
 /*CORPO - CONTATO*/
