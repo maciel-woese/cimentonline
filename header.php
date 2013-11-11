@@ -1,6 +1,6 @@
 <?php
 @session_start();
-ini_set("display_errors", 'off');
+ini_set("display_errors", 'on');
 
 
 

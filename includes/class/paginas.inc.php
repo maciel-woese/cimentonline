@@ -131,13 +131,17 @@ class paginas {
 
 	}
 
-	function getPosts($start, $limit){
-		$count = $this->contaRegistros('SELECT count(*) as count FROM tb_paginas where tipo_pagina = 2');
-		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 order by cod_pagina desc limit {$start}, {$limit}";
+	function getPosts($start, $limit, $truncate=300){
+		$filtro = '';
+		if(isset($_GET['pesquisa'])){
+			$filtro .= " and (dsc_pagina LIKE '%{$_GET['pesquisa']}%' OR texto_pagina LIKE '%{$_GET['pesquisa']}%')";
+		}
+		$count = $this->contaRegistros("SELECT count(*) as count FROM tb_paginas where tipo_pagina = 2 {$filtro}");
+		$sqlB = "SELECT * FROM tb_paginas where tipo_pagina = 2 {$filtro} order by cod_pagina desc limit {$start}, {$limit}";
 		$dados = array();
 		$query1	= $this->db->query($sqlB);
 		while($row = $this->db->fetch_object($query1)){
-			$texto = truncate($row->texto_pagina, 300, '...');
+			$texto = truncate($row->texto_pagina, $truncate, '...');
 
 			$dados[] = array(
 				'codigo' => $row->cod_pagina,

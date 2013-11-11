@@ -39,8 +39,15 @@
 
 		function Header(){
 			if(!empty($fornecedor['logo'])){
-		    	$this->Image("../images/ba7b5b8abcf98bb284cfa39f8fcaf0b2_1384007109.png", 10,6,30);	
+				if(file_exists($fornecedor['logo'])){
+					$img = $fornecedor['logo'];
+				}
+				else{
+					$img = '../'.$fornecedor['logo'];
+				}
+		    	$this->Image($img, 10,6,30);	
 			}
+			
 			$data = date('d')." de ".monthName(date('m'))." de ".date('Y');
 
 		    $this->Cell(60);

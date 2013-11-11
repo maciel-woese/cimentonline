@@ -1,7 +1,6 @@
 <!-- TOPO -->
 <?php 
-	include_once 'header.php';
-	
+	include_once 'header.php';	
 	$buscado = $_GET['pesquisa'];
 
 ?>
@@ -29,86 +28,78 @@
 
 		<!-- CONTEÚDO AQUI -->
 		<ul id="resultado">
-        	<li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3><?php echo $buscado; ?> foi o que você buscou</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Este post obtem <?php echo $buscado; ?></h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Nesse caso também achamos sua pesquisa: <?php echo $buscado; ?></h3>
-                <p style="margin-top:5px;">Aqui na discrição "<?php echo $buscado; ?>". Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;"><?php echo $buscado; ?>, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
-            
-            <li>
-            	<a href="#link" title="Titulo">
-            	<img width="100" height="100" src="http://www.placehold.it/100x100" />
-                <h3>Titulo do Post/Materia/Pagina</h3>
-                <p style="margin-top:5px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum hendrerit risus eget feugiat. Nunc tempus consectetur purus, in aliquam odio. In hac habitasse platea dictumst.</p> 
-                </a>               
-            </li>
+            <?php
+                $num_por_pagina = 4; 
+                $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+                $primeiro_registro = ($pagina*$num_por_pagina) - $num_por_pagina;
+
+                $object = $listapagina->getPosts($primeiro_registro, $num_por_pagina, 150);
+                $posts = $object['dados'];
+                $total_paginas = $object['total']/$num_por_pagina;
+                foreach ($posts as $key => $value) {
+                    echo "<li>
+                            <a href='subpage.php?action={$value['codigo']}' title='{$value['titulo']}'>
+                                <h3>{$value['titulo']}</h3>
+                                <p style='margin-top:5px;'>{$value['texto']}</p> 
+                            </a>               
+                        </li>";
+                }
+            ?>
         </ul>
 		
         <div id="pgn" class="paginacao-pesquisa">
-    		<ul>
-        		<li class="ativo">1</li>
-            	<li>2</li>
-            	<li>3</li>
-            	<li>4</li>
-        	</ul>  
+    		<?php
+                $PHP_SELF = $_SERVER['PHP_SELF'];
+
+                $prev = $pagina - 1;
+                $next = $pagina + 1;
+                // se página maior que 1 (um), então temos link para a página anterior
+                if ($pagina > 1) 
+                {
+                    $prev_link = "<a href=\"$PHP_SELF?pagina=$prev\"> <li> << </li> </a>";
+                    $pg_inicio = "<a href=\"$PHP_SELF?pagina=1\"> <li> < </li> </a> ";
+                } 
+                else 
+                { // senão não há link para a página anterior
+                    $prev_link = "<li class='ativo'> << </li>";
+                    $pg_inicio = "<li class='ativo'> < </li>";
+                }
+                // se número total de páginas for maior que a página corrente, 
+                // então temos link para a próxima página  
+                if ($total_paginas > $pagina) {
+                    $totalPg = ceil($total_paginas);
+                    $next_link = "<a href=\"$PHP_SELF?pagina=$next\"> <li> >> </li> </a>";
+                    $pg_ultima = " <a href=\"$PHP_SELF?pagina=$totalPg\"> <li> > </li> </a>";
+                } 
+                else 
+                { 
+                // senão não há link para a próxima página
+                    $next_link = "<li class='ativo'> >> </li>";
+                    $pg_ultima = " <li class='ativo'> > </li>";
+                }
+                $total_paginas = ceil($total_paginas);
+                  echo '<ul>';
+                  $painel = "";
+                  for ($x=1; $x <= $total_paginas; $x++) 
+                  {
+                    if ($x == $pagina) 
+                    {
+                      //se estivermos na página corrente, não exibir o link para visualização desta página 
+                      //$painel .= " [$x] ";
+
+                      $painel .= "<li class='ativo'>$x</li>";  
+
+                    } 
+                    else 
+                    {
+                      $painel .= " <a href=\"$PHP_SELF?pagina=$x\"><li>$x</li></a>";
+                    }
+                  }
+                //$painel .= '</ul></div>';
+                // exibir painel na tela
+                echo " $painel "; 
+                echo '</ul>';   
+            ?> 
     	</div>
 
 	</div>
