@@ -19,6 +19,7 @@ for($i=0; $i < count($objectUsu['dados']); $i++)
    $nome = $objectUsu['dados'][$i]['usu_nome'];
    $login = $objectUsu['dados'][$i]['usu_login'];
 	$tipo = $objectUsu['dados'][$i]['usu_tp_usu'];
+   $tipo_nome = $objectUsu['dados'][$i]['usu_tipo_nome'];
 }
 
 //Verifica se n existe uma linha com o login e a senha digitado
@@ -38,6 +39,7 @@ else
    $_SESSION['usu_codigo_id'] = $usu_codigo_id;
       
    $_SESSION['nome'] = $nome;
+   $_SESSION['tipo_nome'] = $tipo_nome;
    $_SESSION['login'] = md5($login);
    $_SESSION['tipo'] = $tipo;
    if($_GET['url']){

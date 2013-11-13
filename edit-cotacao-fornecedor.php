@@ -19,6 +19,15 @@
 			");
 
 			if($query){
+				$query = $list->db->query("
+					select cl.cli_email, f.for_email from tb_cotacao as c 
+					inner join tb_clientes as cl on (cl.cli_codigo=c.cod_cliente)
+					inner join tb_fornecedor as f on (f.for_codigo=c.cod_fornecedor)
+					where codigo = {$cotacao_id} LIMIT 1
+				");
+
+				$cotacao = $this->db->fetch_assoc($query);
+
 				$pdf = new PDF($cotacao_id);
 				$pdf->AliasNbPages();
 				$pdf->AddPage();				
@@ -26,7 +35,10 @@
 				$pdf->getCotacao();
 				$name = time().'.pdf';
 				$pdf->Output($name, 'F');
-				enviar_email(utf8_decode("Proposta de Cotação"), utf8_decode('Proposta de Cotação'), $name);
+				enviar_email(utf8_decode("Proposta de Cotação"), utf8_decode('Proposta de Cotação'), array(
+					$cotacao['cli_email'],
+					$cotacao['for_email']
+				) $name);
 				@unlink($name);
 
 				echo '<script>alert("Cotação Atualizada!");window.location = "meu-painel.php?idmenu=cotacoes";</script>';

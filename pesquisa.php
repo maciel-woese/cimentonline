@@ -110,7 +110,7 @@ function CheckAll() {
             ?> 
 
            <select id="city" name="CITY" style="width:180px; height:30px; margin:5px 0 0 30px; padding:5px;"> 
-            <option value=" " selected="selected">Selecione uma Cidade</option>
+            <option value="" selected="selected">Todas as Cidades</option>
             </select>
            <?php
            }
@@ -173,10 +173,9 @@ function CheckAll() {
         echo ' e Cidade = ';
         if(isset($_GET['city']) and !empty($_GET['city'])){
             $objCidade = $estados_cidades->getArrayCidades($_GET['city']); 
-            for($c=0; $c < count($objCidade); $c++)
-            {
-                $city = $objCidade[$c]['codigo'];
-                echo '<b>'.$objCidade[$c]['cidade'].'</b>';
+            for($c=0; $c < count($objCidade); $c++){
+                @$city = $objCidade[$c]['codigo'];
+                echo '<b>'.@$objCidade[$c]['cidade'].'</b>';
             }
         }else{
             echo '<b>Todas as Cidades</b>';
@@ -316,13 +315,17 @@ function CheckAll() {
     <div id="form_cotacao">
          <?php
          if($i > 0){
-            if(isset($_SESSION['tipo']) and $_SESSION['tipo'] == 5){
-         ?>
+            ?>
         	    <a id="btn_cotacao" href = "javascript:void(0)">
                 <button class="btn_cotar"> Fazer Cotação </button></a>
 
                 <script type="text/javascript">
                     $('#btn_cotacao').click(function(){
+                        <?php 
+                            if(!isset($_SESSION["login"])){
+                                echo 'alert("E Necessário fazer o login para realizar a cotação");return true;';
+                            }
+                        ?>
                         $('#light').css('display', 'block');
                         $('#fade').css('display', 'block');
                         $('#light .tags_cotar ul li').remove();
@@ -341,8 +344,6 @@ function CheckAll() {
                     });
                 </script>
         <?php
-
-            }
         }
         ?>
         <!-- FORMULARIO DE COTAÇÃO - LIGHTBOX -->

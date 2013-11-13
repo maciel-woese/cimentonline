@@ -124,7 +124,7 @@ class estados {
 		$query2	= $this->db->query($sql);
 		
 		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" > ';
-		echo '<option value=" " disabled="disabled" selected="selected">Selecione uma Cidade</option>';
+		echo '<option value="" selected="selected">Todas as Cidades</option>';
 
 			   while ( $obj = $this->db->fetch_object($query2) )
 				{
@@ -154,7 +154,7 @@ class estados {
 		$query2	= $this->db->query($sql);
 		
 		echo '<select name="city" id="CITY" style="width:180px; height:30px; margin:5px 0 0 0; padding:5px;" onchange="this.form.submit()" > ';
-		echo '<option value=" " disabled="disabled" selected="selected">Selecione uma Cidade</option>';
+		echo '<option value="" selected="selected">Todas as Cidades</option>';
 
 			   while ( $obj = $this->db->fetch_object($query2) )
 				{
@@ -197,8 +197,8 @@ class estados {
 
 	function getArrayCidades($param){  
 		$this->setPostValues();
-	   
-		$sql = "SELECT * FROM tb_cidade WHERE cod_estado ='".$param."'";
+	   	$dados = NULL;
+		$sql = "SELECT * FROM tb_cidade WHERE cid_codigo ='".$param."'";
 		
 		$sql .= " order by capital, cid_dsc asc";
 		
@@ -207,7 +207,7 @@ class estados {
 		while ( $obj = $this->db->fetch_object($query2) )
 		{
 			$dados[] = array(
-				'codigo'    =>	$obj->cid_codigo,
+				'codigo'  =>	$obj->cid_codigo,
 				'cidade'  =>	utf8_encode($obj->cid_dsc)
 			);
 		}

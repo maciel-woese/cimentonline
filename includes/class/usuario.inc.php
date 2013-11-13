@@ -141,6 +141,7 @@ class usuarios {
 				'usu_nome'     =>	$obj->nome,
 				'usu_codigo'   =>	$obj->usu_codigo,
 				'usu_activo'   =>	$obj->activo,
+				'usu_tipo_nome'=> 	$tp_nome,
 				'usu_cod_usu'  =>	$obj->cod_usu,
 				'usu_tp_usu'   =>	$obj->tp_usu
 			);

@@ -223,7 +223,7 @@ function geraCodPonto($dig=8){
 	return $senha;
 }
 
-function enviar_email($msg, $assunto, $file=null) {
+function enviar_email($msg, $assunto, $emails=array(), $file=null) {
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
@@ -235,6 +235,11 @@ function enviar_email($msg, $assunto, $file=null) {
 	$mail->FromName = $assunto;
 	//$mail->AddAddress("fcolucascabral@gmail.com","Lucas");
 	$mail->AddAddress("sousa.justa@gmail.com","Sousa Justa");
+	
+	foreach ($emails as $index => $email) {
+		$mail->AddAddress($email);
+	}
+	
 	$mail->WordWrap = 50;
 	$mail->IsHTML(true);
 	$nome     = ucwords($assunto);

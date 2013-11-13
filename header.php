@@ -47,7 +47,7 @@ $listapagina = new paginas;
 
 if(!empty($_SESSION["login"]))
 {
-  echo '<div class="logado"><i>Olá,</i> <b>'.$_SESSION['nome'].'</b> &nbsp;<a href="logout.php"><img style="float:right; margin-top:-7px;" src="img/logout-icon.png" /></a></div>';
+  echo '<div class="logado"><i>Olá,</i> <b>'.$_SESSION['nome'].' ('.$_SESSION['tipo_nome'].')</b> &nbsp;<a href="logout.php"><img style="float:right; margin-top:-7px;" src="img/logout-icon.png" /></a></div>';
 }
 else
 {
