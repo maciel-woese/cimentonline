@@ -146,7 +146,7 @@ Ext.define('ShSolutions.view.tb_fornecedor.List', {
 									hidden: true,									
 									action: 'adicionar',
 									text: 'Adicionar'
-								},
+								},*/
 								{
 									xtype: 'button',
 									id: 'button_edit_tb_fornecedor',
@@ -154,7 +154,15 @@ Ext.define('ShSolutions.view.tb_fornecedor.List', {
 									hidden: true,									
 									action: 'editar',
 									text: 'Editar'
-								},*/
+								},
+								{
+									xtype: 'button',
+									id: 'button_del_tb_fornecedor',
+									iconCls: 'bt_del',									
+									hidden: true,									
+									action: 'deletar',
+									text: 'Deletar'
+								},
 								{
 									xtype: 'button',
 									id: 'button_ativar_desativar_tb_fornecedor',
