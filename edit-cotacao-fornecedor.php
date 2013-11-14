@@ -26,7 +26,7 @@
 					where codigo = {$cotacao_id} LIMIT 1
 				");
 
-				$cotacao = $this->db->fetch_assoc($query);
+				$cotacao = $list->db->fetch_assoc($query);
 
 				$pdf = new PDF($cotacao_id);
 				$pdf->AliasNbPages();

@@ -114,6 +114,7 @@ jQuery(function($){
                         $class = '';
                         while ( $obj = $listapagina->db->fetch_object($query) ){
                             $valor = number_format($obj->valor,2,",",".");
+                            $local_string = implode('+', explode(' ', $obj->local_entrega));
                             echo "<tr class='{$class}'>
                                 <td>".$obj->nm_solicitante."</td>
                                 <td>".$obj->descricao."</td>
@@ -121,9 +122,14 @@ jQuery(function($){
                                 <td>".$obj->qtd_sacos."</td>
                                 <td>".$obj->data_cadastro."</td>
                                 <td>".$valor."</td>
-                                <td><a href='javascript:void(0)' id='".$obj->codigo."' class='btn-cotacao-edit'>
-                                <img src='css/img/icons/view-icon.png' width='20' height='20'>
-                                </a></td>
+                                <td style='width:50px;'>
+                                    <a style='float:left;' href='javascript:void(0)' id='".$obj->codigo."' class='btn-cotacao-edit'>
+                                        <img src='css/img/icons/view-icon.png' width='20' height='20'>
+                                    </a>
+                                    <a style='float:left;' href='cotacao_print.php?cotacao_id=".$obj->codigo."&center=".$local_string."' class='btn-cotacao-print'>
+                                        <img src='css/img/icons/print-icon.png' width='20' height='20'>
+                                    </a>
+                                </td>
                             </tr>";
 
                             if($class==''){$class='azul';}
