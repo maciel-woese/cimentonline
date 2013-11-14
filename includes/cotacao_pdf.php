@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	@session_start();
 	require_once 'configure.inc.php';
 	require_once 'pdf/fpdf.php';
 
@@ -57,7 +57,7 @@
 		    $this->Ln();
 		    $this->SetFont('Arial','',14);
 		    $this->Cell(60);
-		    $this->Cell(30,5,$this->fornecedor['for_endereco'],0,0);
+		    $this->Cell(30,5,utf8_decode($this->fornecedor['for_endereco']),0,0);
 		    $this->Ln();
 		    $this->Cell(60);
 		    $this->Cell(30,10,$this->fornecedor['for_tel'].", ".$this->fornecedor['for_cel'],0,0);
@@ -88,7 +88,7 @@
 			);
 			$this->table($header, $this->cotacao);
 
-			$this->Ln(20);
+			$this->Ln(5);
 			$this->MultiCell(0,5, utf8_decode("Informamos que temos plenas condições para atender as quantidades solicitadas, dentro do prazo de entrega definido e das condições comerciais propostas, aceitas e acordadas entre nossas empresas."));
 			$this->Ln();
 			$this->MultiCell(0, 5, utf8_decode('Condições para o atendimento:
@@ -118,7 +118,7 @@
 	        $this->Cell($w[1],6,$row['qtd_sacos'],'LR');
 	        $this->Cell($w[2],6,$row['valor'],'LR',0,'R');
 	        //$this->Cell($w[3],6,"10 dias*",'LR',0,'R');
-	        $this->Cell($w[7],6,$row['entrega'],'LR',0,'R');
+	        $this->Cell($w[3],6,$row['entrega'],'LR',0,'R');
 	        $this->Ln();
 
 	        //$row['prazo_entrega']
