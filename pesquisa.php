@@ -150,7 +150,6 @@ function CheckAll() {
         echo '<div><h1 style="font:16px Trebuchet MS, Arial, Helvetica, sans-serif; margin-left:0px; padding:3px 6px; background:#4674B8; color:#FFF; border-radius:3px; margin-left:-15px; text-align:center">Resultado da Pesquisa por Estado = ';
         if(isset($_GET['uf']) and !empty($_GET['uf'])){
             $objEstado = $estados_cidades->getArrayEstados($_GET['uf']); 
-            
             for($e=0; $e < count($objEstado); $e++)
             {   
                 $uf = $objEstado[$e]['codigo'];
@@ -286,9 +285,22 @@ function CheckAll() {
         echo "$pg_inicio $prev_link $painel $next_link $pg_ultima"; 
         echo '</ul></div>';     
     }else{
+        $msg = '';
+        if(isset($_GET['uf']) and !empty($_GET['uf'])){
+            $objEstado = $estados_cidades->getArrayEstados($_GET['uf']); 
+            $msg .= 'do Estado: '.$objEstado[0]['estado'].'.<br>';
+        }
+        if(isset($_GET['city']) and !empty($_GET['city'])){
+            $objCidade = $estados_cidades->getArrayCidades($_GET['city']); 
+            $msg = 'na Cidade: '.$objCidade[0]['cidade'].', '.$msg;
+        }
     ?>
 
-        <br><div><h1 style="font:16px Trebuchet MS, Arial, Helvetica, sans-serif; margin-left:0px; padding:3px 6px; background:#4674B8; color:#FFF; border-radius:3px; margin-left:-15px; text-align:center">Nenhum Fornecedor Encontrado. Seja o primeiro da sua região a fazer o cadastro; </div>
+        <br><div><h1 style="font:16px Trebuchet MS, Arial, Helvetica, sans-serif; margin-left:0px; padding:3px 6px; background:#4674B8; color:#FFF; border-radius:3px; margin-left:-15px; text-align:center">
+            Nenhum Fornecedor Encontrado, <?php echo $msg; ?>
+            Seja o primeiro da sua região a fazer o 
+            <a href="cadastro.php" style="color:#fff!important;text-decoration:underline;" >cadastro</a>; 
+        </div>
         <!-- MAPA -->
         <?php 
         include_once 'mapa.php'; 

@@ -145,6 +145,14 @@ Ext.define('ShSolutions.view.tb_clientes.List', {
 								},
 								{
 									xtype: 'button',
+									id: 'button_del_tb_clientes',
+									iconCls: 'bt_del',									
+									hidden: true,									
+									action: 'deletar',
+									text: 'Deletar'
+								},
+								{
+									xtype: 'button',
 									id: 'button_ativar_desativar_tb_clientes',
 									iconCls: 'bt_acao',									
 									hidden: true,									
