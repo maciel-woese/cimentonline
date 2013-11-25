@@ -29,7 +29,7 @@
             <br />
             <form name="loja" method="" action="carrinho-compra.php">
             	<table width="255px">
-                    <?
+                    <?php
                         $query = $listapagina->db->query("
                             select * from tb_tipo_anuncio;
                         ");

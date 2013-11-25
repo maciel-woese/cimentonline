@@ -35,6 +35,7 @@ $(document).ready(function() {
     $('#UF').change(function(){
       $('#wait_1').show();
       $('#result_1').hide();
+
       $.get("includes/services/estados.php?action=BUSCACITY", {
         drop_var: $('#UF').val()
       }, function(response){
@@ -82,7 +83,7 @@ function CheckAll() {
         <form method="GET" action="pesquisa.php">
 
         <div id="select_filtrar">
-            <select id="UF" name="uf" style="width:180px; height:30px; margin:5px 10px; padding:5px;" onchange='this.form.submit()'>
+            <select id="UF" name="uf" style="width:180px; height:30px; margin:5px 10px; padding:5px;" onchange='$("#CITY").val("");this.form.submit();'>
             <option value=" " disabled="disabled" selected="selected">Selecione um Estado</option>
                 <?php
                 //Busca Estados

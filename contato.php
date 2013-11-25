@@ -1,7 +1,11 @@
 <!-- TOPO -->
 <?php 
-include_once 'header.php'; 
-
+	include_once 'header.php'; 
+	$dados = array();
+	$query = $listapagina->db->query("select * from config");
+	while($row = $listapagina->db->fetch_object($query)){
+		$dados[$row->tipo] = $row->valor;
+	}
 ?> 
 
 
@@ -39,11 +43,11 @@ include_once 'header.php';
 
 <div id="contato_info_ctt">
 <div id="contato_info_fone">
-<span><img src="css/img/icons/fone-icon.png" />+55 85 8888.8888 / 8888.8888</span>
+<span><img src="css/img/icons/fone-icon.png" /><?php echo $dados['telefone'];?></span>
 </div>
 
 <div id="contato_info_mail">
-<span><img src="css/img/icons/email-icon.png" />email@email.com.br</span>
+<span><img src="css/img/icons/email-icon.png" /><?php echo $dados['email'];?></span>
 </div>
 
 </div>
@@ -54,10 +58,10 @@ include_once 'header.php';
 
 <div id="contato_social_links">
 	<ul>
-    	<li><img src="css/img/icons/social-facebook-icon.png" /><span>/facebook</span></li>
-        <li><img src="css/img/icons/social-twitter-icon.png" /><span>@twitter</span></li>
-        <li><img src="css/img/icons/social-google-icon.png" /><span>Google+</span></li>
-        <li><img src="css/img/icons/social-skype-icon.png" /><span>Skype</span></li>
+    	<li><img src="css/img/icons/social-facebook-icon.png" /><span><a href="<?php echo $dados['facebook'];?>">/facebook</a></span></li>
+        <li><img src="css/img/icons/social-twitter-icon.png" /><span><a href="<?php echo $dados['twitter'];?>">@twitter</a></span></li>
+        <li><img src="css/img/icons/social-google-icon.png" /><span><a href="<?php echo $dados['google+'];?>">Google+</a></span></li>
+        <li><img src="css/img/icons/social-skype-icon.png" /><span><a href="<?php echo $dados['skype'];?>">Skype</a></span></li>
     </ul>
 </div>
 

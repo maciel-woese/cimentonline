@@ -3,8 +3,9 @@
 include_once 'header.php'; 
 
 //print $_FILES["arquivo_pdf"]["size"] ;
-
-move_uploaded_file($_FILES["arquivo_pdf"]["tmp_name"], "curriculum/" . $_FILES["arquivo_pdf"]["name"]); 
+if(isset($_FILES['arquivo_pdf'])){
+    @move_uploaded_file($_FILES["arquivo_pdf"]["tmp_name"], "curriculum/" . $_FILES["arquivo_pdf"]["name"]);     
+}
 /*$allowedExts = array("pdf", "doc", "docx"); 
 $extension = end(explode(".", $_FILES["arquivo_pdf"]["name"]));
 

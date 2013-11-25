@@ -1,21 +1,17 @@
 <?php
-/**
-*	@Autor: Maciel Sousa
-*	@Email: macielcr7@gmail.com
-**/
 
 if($_POST){
 	try {
 		require('../../autoLoad.php');
 		$buscar = new Buscar();
-		$tabela = 'tb_fornecedor';
+		$tabela = 'config';
 		
 		if( isset($_POST['action']) AND $_POST['action'] == 'GET_VALUES' ){
 		
 			$pdo = $connection->prepare("
 				SELECT * 
-				FROM tb_fornecedor
-				WHERE for_codigo=:id
+				FROM config
+				WHERE id=:id
 			");
 			
 			$pdo->bindParam(':id', $_POST['id']);
@@ -35,16 +31,6 @@ if($_POST){
 			
 			$result = array();
 			
-			if(isset($_POST['action']) AND $_POST['action'] == 'FILTER'){
-				$buscar->setBusca(array('for_dsc', 'tb_fornecedor.for_dsc'), $_POST['for_dsc'], 'like');
-				$buscar->setBusca(array('for_comentario', 'tb_fornecedor.for_comentario'), $_POST['for_comentario'], 'like');
-				$buscar->setBusca(array('for_endereco', 'tb_fornecedor.for_endereco'), $_POST['for_endereco'], 'like');
-				$buscar->setBusca(array('for_tel', 'tb_fornecedor.for_tel'), $_POST['for_tel'], 'like');
-				$buscar->setBusca(array('for_cel', 'tb_fornecedor.for_cel'), $_POST['for_cel'], 'like');
-				$buscar->setBusca(array('for_email', 'tb_fornecedor.for_email'), $_POST['for_email'], 'like');
-				$buscar->setBusca(array('for_site', 'tb_fornecedor.for_site'), $_POST['for_site'], 'like');
-			}
-			
 			if (isset($_POST['sort'])){
 				$sortJson = json_decode( $_POST['sort'] );
 				$sort = trim(rtrim(addslashes($sortJson[0]->property )));
@@ -55,9 +41,7 @@ if($_POST){
 			
 			$pdo = $connection->prepare("
 				SELECT count(*) as total 
-				FROM tb_fornecedor 
-					LEFT JOIN tb_estado ON (tb_fornecedor.est_codigo=tb_estado.est_codigo) 
-					LEFT JOIN tb_cidade ON (tb_fornecedor.cid_codigo=tb_cidade.cid_codigo) 
+				FROM config 
 				{$filtro};
 			");
 			$pdo->execute( $buscar->getArrayExecute() );
@@ -67,13 +51,13 @@ if($_POST){
 			$countRow = $query->total;
 			
 			$pdo = $connection->prepare("
-				SELECT tb_fornecedor.*, tb_estado.est_dsc, tb_cidade.cid_dsc 
-				FROM tb_fornecedor 
-				LEFT JOIN tb_estado ON (tb_fornecedor.est_codigo=tb_estado.est_codigo) 
-				LEFT JOIN tb_cidade ON (tb_fornecedor.cid_codigo=tb_cidade.cid_codigo) 
+				
+				SELECT config.* 
+				FROM config 
 				{$filtro} 
 				ORDER BY {$sort} {$order} 
-				LIMIT {$start}, {$limit};
+				LIMIT {$start}, {$limit}
+			;
 			");
 			$pdo->execute( $buscar->getArrayExecute() );
 			

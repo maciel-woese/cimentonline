@@ -12,7 +12,7 @@ if($_POST){
 		
 			$user->getAcao($tabela, 'deletar');
 		
-			$pdo = $connection->prepare("DELETE FROM tb_fornecedor WHERE cid_codigo = ?");
+			$pdo = $connection->prepare("DELETE FROM tb_fornecedor WHERE for_codigo = ?");
 			$pdo->execute(array(
 				$_POST['id']
 			));

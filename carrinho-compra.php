@@ -22,7 +22,7 @@
         </div> 
         
         <div class="corpo-tabela">
-            <?
+            <?php
                 
                 if(isset($_GET['periodo_valor']) and !empty($_GET['periodo_valor'])){
                     $_SESSION['periodo_valor'] = $_GET['periodo_valor'];
