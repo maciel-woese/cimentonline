@@ -9,8 +9,7 @@ $mensagem = $_POST['mensagem'];
 if((isset($_POST['nome']) and !empty($_POST['nome'])) and 
 	(isset($_POST['email']) and !empty($_POST['email'])) and 
 	(isset($_POST['assunto']) and !empty($_POST['assunto'])) and 
-	(isset($_POST['mensagem']) and !empty($_POST['mensagem'])) )
-{
+	(isset($_POST['mensagem']) and !empty($_POST['mensagem'])) ){
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
@@ -32,17 +31,16 @@ if((isset($_POST['nome']) and !empty($_POST['nome'])) and
 	$mail->Subject = $assunto;
 	$mail->Body = $msg1.' '.$mensagem;
 
-	if(!$mail->Send())
-	{
-		echo "<P>houve um erro ao  enviar o email! </P>".$mail->ErrorInfo;
+	if(!$mail->Send()){
+		echo "<script type='text/javascript'> alert('Ocorreu algum erro ao enviar o formul&aacute;rio');history.back(); </script>";
+	}
+	else{
+		echo "<script type='text/javascript'> alert('Contato Enviado com Sucesso!'); window.location.href='contato.php'; </script>";
 	}
 }
+else{
+	echo "<script type='text/javascript'> alert('Preencha todos os campos!'); history.back();</script>";
+}
 
-header('Location: contato.php');
-//if($enviar) {
-//echo "<script type='text/javascript'> alert('Contato Enviado com Sucesso!'); window.location.href='contato.html'; </script>";
-
-//echo "<script type='text/javascript'> alert('Ocorreu algum erro ao enviar o formul&aacute;rio'); </script>";
-//}
-
+//header('Location: contato.php');
 ?>
