@@ -223,7 +223,7 @@ function geraCodPonto($dig=8){
 	return $senha;
 }
 
-function enviar_email($msg, $assunto, $emails=array(), $file=null) {
+function enviar_email($msg, $assunto, $emails=null, $file=null) {
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
@@ -233,9 +233,18 @@ function enviar_email($msg, $assunto, $emails=array(), $file=null) {
 	$mail->Password = "fsj@1500";
 	$mail->From = "noreply@shsolutions.com.br";
 	$mail->FromName = $assunto;
+	//$mail->AddAddress("fcolucascabral@gmail.com","Lucas");
 	$mail->AddAddress("sousa.justa@gmail.com","Sousa Justa");
+	$mail->AddAddress("macielcr7@gmail.com","Maciel Sousa");
 	
-	
+	if(is_array($emails)){
+		foreach ($emails as $index => $email) {
+			$email = trim($email);
+			if(!empty($email)){
+				$mail->AddAddress($email, $email);				
+			}
+		}		
+	}
 	
 	$mail->WordWrap = 50;
 	$mail->IsHTML(true);
@@ -245,14 +254,13 @@ function enviar_email($msg, $assunto, $emails=array(), $file=null) {
 	if($file!=null){
 		$mail->AddAttachment($file);
 	}
-	$msg1 .= "<br><br>\n<b> Mensagem Automatica</b><br><br>\n";
+	$msg1 = "<br><br>\n<b> Mensagem Automatica</b><br><br>\n";
 	$mail->Subject = $assunto;
 	$mail->Body = $msg1 .' '. $msg;
 
 	if(!$mail->Send())
 	{
-		//echo "<P>houve um erro ao  enviar o email! </P>".$mail->ErrorInfo;
-		echo '<script>alert("Houve um erro ao  enviar o email!! '.$mail->ErrorInfo.' ");window.location = "#";</script>';
+		echo "<P>houve um erro ao  enviar o email! </P>".$mail->ErrorInfo;
 	}
 }
 
