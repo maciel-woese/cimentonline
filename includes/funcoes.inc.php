@@ -233,12 +233,9 @@ function enviar_email($msg, $assunto, $emails=array(), $file=null) {
 	$mail->Password = "fsj@1500";
 	$mail->From = "noreply@shsolutions.com.br";
 	$mail->FromName = $assunto;
-	//$mail->AddAddress("fcolucascabral@gmail.com","Lucas");
 	$mail->AddAddress("sousa.justa@gmail.com","Sousa Justa");
 	
-	foreach ($emails as $index => $email) {
-		$mail->AddAddress($email);
-	}
+	
 	
 	$mail->WordWrap = 50;
 	$mail->IsHTML(true);
@@ -254,7 +251,8 @@ function enviar_email($msg, $assunto, $emails=array(), $file=null) {
 
 	if(!$mail->Send())
 	{
-		echo "<P>houve um erro ao  enviar o email! </P>".$mail->ErrorInfo;
+		//echo "<P>houve um erro ao  enviar o email! </P>".$mail->ErrorInfo;
+		echo '<script>alert("Houve um erro ao  enviar o email!! '.$mail->ErrorInfo.' ");window.location = "#";</script>';
 	}
 }
 

@@ -1,10 +1,12 @@
 <?php
-	session_start();
 
-	require_once 'includes/configure.inc.php';
+	@session_start();
+
+	include_once 'includes/configure.inc.php';
 	include_once 'includes/class/paginas.inc.php';
 	include_once 'includes/cotacao_pdf.php';
 	$list = new paginas; 
+
 
 	if(isset($_POST)){
 		$cotacao_id = !empty($_POST['cotacao_id']) ? $_POST['cotacao_id'] : null;
@@ -38,7 +40,7 @@
 				enviar_email(utf8_decode("Proposta de Cotação"), utf8_decode('Proposta de Cotação'), array(
 					$cotacao['cli_email'],
 					$cotacao['for_email']
-				) $name);
+				), $name);
 				@unlink($name);
 
 				echo '<script>alert("Cotação Atualizada!");window.location = "meu-painel.php?idmenu=cotacoes";</script>';
