@@ -49,6 +49,18 @@
 				");				
 			}
 			
+			$msg = utf8_decode("
+				<h1>Cotação Cadastrada</h1>
+				<b>Dados da Cotação</b> <br>
+				
+				Solicitante: {$solicitante} <br>
+				Contato: {$contato} <br>
+				Email: {$email} <br>
+				Telefone: {$telefone} <br>
+				Local: {$endereco}
+			");
+
+			enviar_email($msg, utf8_decode('Cadastro de Cotação'));
 
 			echo '<script>alert("'.utf8_encode("Cotação").' Cadastrada!");window.location = "index.php";</script>';
 		}
