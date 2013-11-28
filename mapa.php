@@ -310,11 +310,14 @@ if(isIe8){
 //]]></script>
 
 
-<div class="mapa_pesquisa">
+<div class="mapa_pesquisa" style="margin:20px 0 0 -10px; zoom:150%;">
     
     <img style="z-index:100; float:right; display:block; position:absolute; margin:0 0 0 14px;" src="css/img/sombra-mapa.png" title="" alt="sombra" />
     <div id="the-map" style="z-index:9999; position:relative;"></div>
         
 </div>
 
+<!-- BANNER CORPO (805x180) -->
+<div id="corpo_banner" style="margin-left:-40px;"><img src="img/banners/destaque-corpo.png" /></div>
+<!-- FIM BANNER CORPO (805x180) -->
 

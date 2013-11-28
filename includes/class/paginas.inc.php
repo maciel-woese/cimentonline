@@ -1,4 +1,5 @@
 <?php
+
 class paginas {
 	var $for_codigo;
 	var $razao_social;

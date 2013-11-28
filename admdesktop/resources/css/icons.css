@@ -57,6 +57,29 @@
 	}
 
 
+	.tb_opcoes_anuncio-shortcut {
+		background-image: url(../images/icon/48x/icon-select.png);
+	}
+	.tb_opcoes_anuncio-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-select-h.png);
+	}
+
+	
+	.tb_posts-shortcut {
+		background-image: url(../images/icon/48x/icon-post.png);
+	}
+	.tb_posts-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-post-h.png);
+	}
+
+
+	.config-shortcut {
+		background-image: url(../images/icon/48x/icon-config.png);
+	}
+	.config-shortcut:hover {
+		background-image: url(../images/icon/48x/icon-config-h.png);
+	}
+
 	
 /*SHORTCUT IE6*/
 	.x-ie6 .tb_anunciante-shortcut {
@@ -127,6 +150,36 @@
 	}
 
 
+	.x-ie6 .tb_opcoes_anuncio-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-select.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_opcoes_anuncio-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-select-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .tb_posts-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-post.png', sizingMethod='scale');
+	}
+	.x-ie6 .tb_posts-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-post-h.png', sizingMethod='scale');
+	}
+
+
+	.x-ie6 .config-shortcut {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-config.png', sizingMethod='scale');
+	}
+	.x-ie6 .config-shortcut:hover {
+		background-image: none;
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/icon/48x/icon-config-h.png', sizingMethod='scale');
+	}
+
+
 	
 /*ICON-GRID*/
 	.tb_anunciante {
@@ -180,4 +233,28 @@
 	}
 	.usuarios:hover {
 		background-image: url( ../images/icon/16x/icon-usuario-h.png ) !important;
+	}
+
+	
+	.tb_opcoes_anuncio {
+		background-image: url( ../images/icon/16x/icon-select.png ) !important;
+	}
+	.tb_opcoes_anuncio:hover {
+		background-image: url( ../images/icon/16x/icon-select-h.png ) !important;
+	}
+
+
+	.tb_posts {
+		background-image: url( ../images/icon/16x/icon-post.png ) !important;
+	}
+	.tb_posts:hover {
+		background-image: url( ../images/icon/16x/icon-post-h.png ) !important;
+	}
+
+
+	.config {
+		background-image: url( ../images/icon/16x/icon-config.png ) !important;
+	}
+	.config:hover {
+		background-image: url( ../images/icon/16x/icon-config-h.png ) !important;
 	}
