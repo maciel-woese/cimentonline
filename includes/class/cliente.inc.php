@@ -121,6 +121,20 @@ class cliente {
 				}
 				else{
 					$this->db->commit();
+
+					$msg = "
+						<h1>Cliente Cadastrado</h1>
+						<b>Dados do Cliente</b> <br>
+						
+						Nome: {$this->nome} <br>
+						Empresa: {$this->nome_empresa} <br>
+						Email: {$this->email} <br>
+						Telefone: {$this->telefone} <br>
+						Celular: {$this->celular}
+					";
+
+					enviar_email($msg, 'Cadastro de Cliente');
+
 					header('Location: login.php?action=USUCADASTRADOCOMSUCESSO');
 				}
 			}

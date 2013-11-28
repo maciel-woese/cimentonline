@@ -146,6 +146,18 @@ class fornecedor {
 					else
 					{
 						$this->db->commit();
+						$msg = "
+							<h1>Fornecedor Cadastrado</h1>
+							<b>Dados do Fornecedor</b> <br>
+							
+							Razão Social: {$this->razao_social} <br>
+							End.: {$this->end_completo} <br>
+							Email: {$this->email_principal} <br>
+							Telefone: {$this->telefone} <br>
+							Celular: {$this->celular}
+						";
+
+						enviar_email($msg, 'Cadastro de Fornecedor');
 						//header('Location: publicacao.php?action=FORCADASTRADOCOMSUCESSO&razao='.$this->razao_social.'&end='.$this->end_completo);
 						$link = "publicacao.php?action=FORCADASTRADOCOMSUCESSO&razao=".$this->razao_social."&end=".$this->end_completo; // especifica o endereço
                         redireciona($link); // chama a função  

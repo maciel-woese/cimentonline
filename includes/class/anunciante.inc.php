@@ -144,6 +144,19 @@ class anunciante {
 					else
 					{
 						$this->db->commit();
+						$msg = "
+							<h1>Anunciante Cadastrado</h1>
+							<b>Dados do Anunciante</b> <br>
+							
+							Nome: {$this->nome} <br>
+							Empresa: {$this->nome_empresa} <br>
+							Cargo: {$this->cargo} <br>
+							Email: {$this->email} <br>
+							Telefone: {$this->telefone} <br>
+							Celular: {$this->celular}
+						";
+
+						enviar_email($msg, 'Cadastro de Anunciante');
 						header('Location: loja.php?action=FORCADASTRADOCOMSUCESSO');
 					}	
 				}
