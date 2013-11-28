@@ -39,10 +39,13 @@ Ext.define('ShSolutions.controller.Tb_Clientes', {
     ],
 	
     models: [
-		'ModelTb_Clientes'
+		'ModelTb_Clientes',
+        'ModelCombo'
 	],
 	stores: [
-		'StoreTb_Clientes'		
+		'StoreTb_Clientes',
+        'StoreComboTb_Estado',
+        'StoreComboTb_Cidade'		
 	],
 	
     views: [
@@ -82,6 +85,9 @@ Ext.define('ShSolutions.controller.Tb_Clientes', {
                 change: this.enableButton,
 				render: this.comboLoad
             },
+            'addtb_clienteswin form fieldcontainer combobox[id=est_codigo_tb_clientes]': {
+                change: this.loadCidade
+            },
             'addtb_clienteswin form fieldcontainer button[action=reset_combo]': {
                 click: this.resetCombo
             },
@@ -100,6 +106,30 @@ Ext.define('ShSolutions.controller.Tb_Clientes', {
             },
             'filtertb_clienteswin': {
                 show: this.filterSetFields
+            }
+        });
+    },
+
+    cidade: false,
+
+    loadCidade: function(combo){
+        var me = this;
+        if(!combo.store.getById(combo.getValue())){
+            return true;
+        }
+        if(this.getForm()){
+            var comboCidade = Ext.getCmp('cid_codigo_tb_clientes');
+        }
+        else{
+            var comboCidade = Ext.getCmp('cid_codigo_filter_tb_clientes');
+        }
+        comboCidade.store.proxy.extraParams.cod_estado = combo.getValue();
+        comboCidade.store.load({
+            callback: function(){
+                me.cidade = true;
+                if(comboCidade.isDisabled()){
+                    comboCidade.setDisabled(false);
+                }
             }
         });
     },
@@ -159,8 +189,28 @@ Ext.define('ShSolutions.controller.Tb_Clientes', {
     edit: function(grid, record) {
     	var me = this;
 		me.getDesktopWindow('AddTb_ClientesWin', 'Tb_Clientes', 'tb_clientes.Edit', function(){
-    		me.getAddWin().setTitle('Edi&ccedil;&atilde;o de Tb_Clientes');
-	        me.getValuesForm(me.getForm(), me.getAddWin(), record.get('cli_codigo'), 'server/modulos/tb_clientes/list.php');
+    		me.getAddWin().setTitle('Edi&ccedil;&atilde;o de Clientes');
+	        me.getValuesForm(me.getForm(), me.getAddWin(), record.get('cli_codigo'), 'server/modulos/tb_clientes/list.php', function(dados){
+                var a = setInterval(function(){
+                    if(dados.cid_codigo != null && dados.cid_codigo != ""){
+                        if(me.cidade==true){
+                            Ext.getCmp('cid_codigo_tb_clientes').setValue(dados.cid_codigo);
+                            me.cidade = null;
+                        }
+                    } else {
+                            me.cidade = null;
+                    }
+
+                    if(me.cidade == null){
+                        if(me.getForm()){
+                            me.getForm().el.unmask();
+                        }
+                        
+                        clearInterval(a);
+                        me.cidade = false;
+                    }
+                }, 300);
+            });
 	        Ext.getCmp('action_tb_clientes').setValue('EDITAR');
     	});
     },

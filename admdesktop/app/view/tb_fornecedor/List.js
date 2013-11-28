@@ -33,7 +33,6 @@ Ext.define('ShSolutions.view.tb_fornecedor.List', {
 						autoScroll: true,
 						loadMask: false,
 						getRowClass: function(record, rowIndex, rowParams, store){
-				            console.info(record.get('ativo'));
 				            switch(record.get('ativo')) {
 				                case 0:
 				                    return 'desativado';

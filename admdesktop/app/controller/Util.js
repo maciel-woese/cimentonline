@@ -254,7 +254,7 @@ Ext.define('ShSolutions.controller.Util', {
 							form.getForm().setValues(dados.dados);
 							form.el.unmask();
 							if(typeof callback == 'function'){
-								callback();
+								callback(dados.dados);
 							}
 							clearInterval(me.clearInterval);
 							return true;

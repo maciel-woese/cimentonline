@@ -134,21 +134,76 @@ Ext.define('ShSolutions.view.tb_clientes.Edit', {
 							},
 							items: [
 								{
-									xtype: 'numberfield',
-									name: 'est_codigo',								    
-								    margin: '0 5 0 0',								    
-								    flex: 1,
-									id: 'est_codigo_tb_clientes',
-									anchor: '100%',									fieldLabel: 'Estado'
-								},								
+									xtype: 'fieldcontainer',
+									autoHeight: true,
+									margin: '0 5 0 0',
+									flex: 1,
+									layout: {
+										type: 'hbox'
+									},
+									items: [
+										{
+											xtype: 'combobox',
+											store: 'StoreComboTb_Estado',
+											name: 'est_codigo',
+											allowBlank: true,
+											id: 'est_codigo_tb_clientes',
+											button_id: 'button_est_codigo_tb_clientes',
+											flex: 1,
+											anchor: '100%',
+											fieldLabel: 'Estado'
+										},
+										{
+											xtype: 'buttonadd',
+											iconCls: 'bt_cancel',
+											hidden: true,
+											id: 'button_est_codigo_tb_clientes',
+											combo_id: 'est_codigo_tb_clientes',
+											action: 'reset_combo'
+										},
+										{
+											xtype: 'buttonadd',
+											tabela: 'Tb_Estado',
+											action: 'add_win'
+										}
+									]
+								},
 								{
-									xtype: 'numberfield',
-									name: 'cid_codigo',								    								    
-								    flex: 1,
-									id: 'cid_codigo_tb_clientes',
-									anchor: '100%',									fieldLabel: 'Cidade'
-								}								
-
+									xtype: 'fieldcontainer',
+									autoHeight: true,
+									margin: '0 5 0 0',
+									flex: 1,
+									layout: {
+										type: 'hbox'
+									},
+									items: [
+										{
+											xtype: 'combobox',
+											store: 'StoreComboTb_Cidade',
+											name: 'cid_codigo',
+											allowBlank: true,
+											disabled: true,
+											id: 'cid_codigo_tb_clientes',
+											button_id: 'button_cid_codigo_tb_clientes',
+											flex: 1,
+											anchor: '100%',
+											fieldLabel: 'Cidade'
+										},
+										{
+											xtype: 'buttonadd',
+											iconCls: 'bt_cancel',
+											hidden: true,
+											id: 'button_cid_codigo_tb_clientes',
+											combo_id: 'cid_codigo_tb_clientes',
+											action: 'reset_combo'
+										},
+										{
+											xtype: 'buttonadd',
+											tabela: 'Tb_Cidade',
+											action: 'add_win'
+										}
+									]
+								}
 							]
 						},
 						{
@@ -179,7 +234,8 @@ Ext.define('ShSolutions.view.tb_clientes.Edit', {
 											flex: 1,
 											id: 'cli_dt_cadastro_date_tb_clientes',
 											name: 'cli_dt_cadastro_date',
-											margins: '0 5 0 0',											hideLabel: true
+											margins: '0 5 0 0',											
+											hideLabel: true
 										},
 										{
 											xtype: 'textfield',
@@ -188,7 +244,8 @@ Ext.define('ShSolutions.view.tb_clientes.Edit', {
 											returnWithMask: true,
 											flex: 1,
 											id: 'cli_dt_cadastro_time_tb_clientes',
-											name: 'cli_dt_cadastro_time',											hideLabel: true
+											name: 'cli_dt_cadastro_time',											
+											hideLabel: true
 										}
 									]
 								}								

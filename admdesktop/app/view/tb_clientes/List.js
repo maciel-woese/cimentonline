@@ -33,7 +33,6 @@ Ext.define('ShSolutions.view.tb_clientes.List', {
 						autoScroll: true,
 						loadMask: false,
 						getRowClass: function(record, rowIndex, rowParams, store){
-				            console.info(record.get('ativo'));
 				            switch(record.get('ativo')) {
 				                case 0:
 				                    return 'desativado';
@@ -93,16 +92,14 @@ Ext.define('ShSolutions.view.tb_clientes.List', {
 							width: 140
 						},
 						{
-							xtype: 'numbercolumn',
-							dataIndex: 'est_codigo',
-							format: '0',
+							xtype: 'gridcolumn',
+							dataIndex: 'est_dsc',
 							text: 'Estado',					
 							width: 140
 						},
 						{
-							xtype: 'numbercolumn',
-							dataIndex: 'cid_codigo',
-							format: '0',
+							xtype: 'gridcolumn',
+							dataIndex: 'cid_dsc',
 							text: 'Cidade',					
 							width: 140
 						},

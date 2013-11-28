@@ -71,10 +71,12 @@ if($_POST){
 			$countRow = $query->total;
 			
 			$pdo = $connection->prepare("
-				SELECT tb_clientes.*, 
+				SELECT tb_clientes.*, tb_estado.est_dsc, tb_cidade.cid_dsc,
 					DATE_FORMAT(tb_clientes.cli_dt_cadastro, '%H:%i:%s') as cli_dt_cadastro_time, 
 					DATE_FORMAT(tb_clientes.cli_dt_cadastro, '%Y-%m-%d') as cli_dt_cadastro_date 
 				FROM tb_clientes 
+				left join tb_estado ON (tb_clientes.est_codigo=tb_estado.est_codigo)
+				left join tb_cidade ON (tb_clientes.cid_codigo=tb_cidade.cid_codigo)
 				{$filtro} 
 				ORDER BY {$sort} {$order} 
 				LIMIT {$start}, {$limit};

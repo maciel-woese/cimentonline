@@ -42,7 +42,15 @@ Ext.define('ShSolutions.model.ModelTb_Clientes', {
 		{
 			name: 'cid_codigo',								 
 			type: 'int'
-		},				
+		},
+		{
+			name: 'est_dsc',
+			type: 'string'
+		},
+		{
+			name: 'cid_dsc',
+			type: 'string'
+		},
 		{
 			name: 'cli_dt_cadastro_time',			
 			dateFormat: 'H:i:s',					 
